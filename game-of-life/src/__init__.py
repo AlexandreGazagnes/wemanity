@@ -275,15 +275,32 @@ class GameOfLife(object) :
 					add_cells.append((i,j))
 				else :
 					pass
+		logging.info("_cells")
+		logging.info(self._cells)
 
-		self._cells = [(i,j) for i,j in self._cells if (i,j) not in del_cells]
+		logging.info("add_cells")
+		logging.info(add_cells)
+
+		logging.info("del_cells")
+		logging.info(del_cells)
+
+		for (i,j) in self._cells : 
+			if (i,j) in del_cells : 
+				self._cells.remove((i,j))
+
+		logging.info("_cells after remove")
+		logging.info(self._cells)
+
 		self._cells = self._cells.extend(add_cells)
+
+		logging.info("_cells after extend")
+		logging.info(self._cells)
 
 
 	def _count_neighbours(self, i,j) : 
 		"""count how many living cells for one coord """
 
-		logging.info("_count_neighbours called")
+		# logging.info("_count_neighbours called")
 
 		neighbours = list()
 		
@@ -297,7 +314,7 @@ class GameOfLife(object) :
 	def _give_neighbours_coords(self, i,j)  : 
 		"""give all coords of direct neihbourhood for one coord"""
 
-		logging.info("_give_neighbours_coords called")
+		# logging.info("_give_neighbours_coords called")
 
 		candidates = [	(i+1, j+1), (i-1, j-1),
 						(i+1, j-1), (i-1, j+1),
@@ -309,7 +326,29 @@ class GameOfLife(object) :
 		return autorized
 
 
-	def run(self, round) : 
+	def _next(self) : 
+
+		logging.info("cells before")
+		logging.info(self.cells_nb)
+		logging.info(self.cells_loc)
+		
+		# print(self.space)
+		
+		s = "\n" + str(self._space) ; s = s.replace("0", " ")
+		logging.info(s)
+
+		self._update_cells()
+
+		logging.info("cells after")
+		logging.info(self.cells_nb)
+		logging.info(self.cells_loc)
+
+
+		self._update_space()
+
+
+
+	def run(self) : 
 		"""launch a game session"""
 
 		print("init space")
@@ -320,17 +359,7 @@ class GameOfLife(object) :
 		cont = True
 		while cont : 
 
-
-			logging.info("cells before")
-			logging.info(self.cells_nb)
-			logging.info(self.cells_loc)
-			print(self.space)
-			self._update_cells()
-			self._update_space()
-
-			logging.info("cells after")
-			logging.info(self.cells_nb)
-			logging.info(self.cells_loc)
+			self._next()
 
 			# if cells == 0 stop the game
 			if not self._cells  : 
