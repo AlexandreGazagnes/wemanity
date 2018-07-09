@@ -94,25 +94,25 @@ def test_GameOfLife1() :
 	
 	assert (2,2) in game.cells_loc
 	assert (3,2) in game.cells_loc
-	assert game.neighbours(0,0) == 0
+	assert game.neighbours_nb(0,0) == 0
 
-	assert game.neighbours(2,1) == 2
-	assert game.neighbours(2,2) == 1
+	assert game.neighbours_nb(2,1) == 2
+	assert game.neighbours_nb(2,2) == 1
 
-	assert game.neighbours(1,2) == 1
-	assert game.neighbours(1,1) == 1
+	assert game.neighbours_nb(1,2) == 1
+	assert game.neighbours_nb(1,1) == 1
 
-	assert game.neighbours(3,1) == 2
-	assert game.neighbours(3,3) == 2
-	assert game.neighbours(3,2) == 1
+	assert game.neighbours_nb(3,1) == 2
+	assert game.neighbours_nb(3,3) == 2
+	assert game.neighbours_nb(3,2) == 1
 
-	assert game.neighbours(4,1) == 1
-	assert game.neighbours(4,2) == 1
-	assert game.neighbours(4,3) == 1
+	assert game.neighbours_nb(4,1) == 1
+	assert game.neighbours_nb(4,2) == 1
+	assert game.neighbours_nb(4,3) == 1
 
-	assert game.neighbours(5,1) == 0
-	assert game.neighbours(5,2) == 0
-	assert game.neighbours(5,3) == 0
+	assert game.neighbours_nb(5,1) == 0
+	assert game.neighbours_nb(5,2) == 0
+	assert game.neighbours_nb(5,3) == 0
 
 
 

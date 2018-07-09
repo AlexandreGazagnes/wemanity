@@ -207,8 +207,11 @@ class GameOfLife(object) :
 	def cells_nb(self):
 		return len(self._cells)
 	
-	def neighbours(self, i, j):
+	def neighbours_nb(self, i, j):
 		return self._count_neighbours(i,j)
+
+	def neighbours_loc(self, i,j) : 
+		return self._count_neighbours(i,j) :
 
 	@property	
 	def space(self):
