@@ -37,7 +37,46 @@ def intro() :
 	raises				: - 
 	"""
 
-	print("hello")
+	logging.info("intro() called")
+
+	os.system("clear")
+
+	msg = str(	"#########################################\n"
+				"\n"
+				"              GAME OF LIFE               \n"
+				"\n"
+				"#########################################\n"
+				"\n\n")
+
+	print(msg)
+
+	return 0
+
+
+
+def close() : 
+
+	"""basic bye screen with print out ending message to stdout
+
+	positional args  	: - 
+	optional args 		: -
+	do 					: print out ending message 	
+	return 				: 0 
+	raises				: - 
+	"""
+
+	logging.info("closeo() called")
+
+
+
+	msg = str(	"#########################################\n"
+				"\n"
+				"              bye bye bye !!!             \n"
+				"\n"
+				"#########################################\n"
+				"\n\n")
+
+	print(msg)
 
 	return 0
 
@@ -62,20 +101,7 @@ def arg_manager() :
 	return d
 
 
-def close() : 
 
-	"""basic bye screen with print out ending message to stdout
-
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out ending message 	
-	return 				: 0 
-	raises				: - 
-	"""
-
-	print("close")
-
-	return 0
 
 
 
