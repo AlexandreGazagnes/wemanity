@@ -29,13 +29,13 @@ logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 def test_intro() : 
 	"""test intro"""
 
-	pass
+	assert intro() == 0
 
 
 def test_close() : 
 	"""test close """
 
-	pass
+	assert close() == 0 
 
 
 def test_arg_manager0() : 
