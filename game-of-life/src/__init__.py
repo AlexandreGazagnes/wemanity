@@ -9,12 +9,18 @@ __init__.py
 
 # import 
 
-import os, sys, argparse, logging, random
+import os, sys, argparse, logging, random, time
 
 import pandas as pd
 import numpy as np
 
 from src import * 
+
+
+# logging 
+
+l = logging.INFO
+logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 
 # constants 
@@ -106,6 +112,8 @@ def arg_manager() :
 	raises				: - 
 	"""
 
+	logging.info("arg_manager() called")
+
 	args = sys.argv[1:]
 
 	# manage args from cli or display fancy user interface to ask user
@@ -165,6 +173,14 @@ class GameOfLife(object) :
 
 		logging.info(self._cells)
 
+		self._update_space()
+
+		logging.info(self._space)
+
+		logging.info("end of init")
+
+
+
 	@property
 	def round(self):
 		return self._round
@@ -191,7 +207,49 @@ class GameOfLife(object) :
 
 	@property	
 	def space(self):
-		return self._space
+
+		txt = "\n"*4
+
+		s 	= self._space.to_string(index=False, header=False)
+		s 	= s.replace("0", self.__white_space).replace("1", self.__cell)
+		s 	= s.replace("\n", "|\n|")
+		s 	+="|\n" 
+		s 	= "\n|"+s
+		s 	= "---" * self.dim + s + "---" * self.dim +"\n"
+
+		txt += s
+		txt +="\n"
+		txt +="round   = {}\n".format(self.round)
+		txt +="cells  = {}\n".format(self.cells_nb)
+		txt += "\n" * 4
+
+		return txt
+
+
+	def __str__(self) : 
+
+		return self.space
+
+
+	def __repr__(self) : 
+
+		return self.space
+
+
+	def _update_space(self) : 
+		"""update space regarding cells coords"""
+
+		logging.info("update_space called")
+
+		new_space = self.__default_space
+
+		for i,j in self._cells : 
+			new_space.loc[i,j] = 1 
+
+		self._space = new_space
+
+
+
 
 	# def run(self, round) : 
 	# 	"""launch a game session"""
