@@ -15,6 +15,13 @@ please use 'pytest -v'
 # import 
 
 import os, sys, logging, pytest
+from src import * 
+
+
+# logging	
+
+l = logging.INFO
+logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 
 # functions
