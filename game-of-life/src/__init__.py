@@ -19,7 +19,7 @@ from src import *
 
 # logging 
 
-l = logging.INFO
+l = logging.WARNING
 logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 
@@ -119,9 +119,10 @@ def arg_manager() :
 	# manage args from cli or display fancy user interface to ask user
 	# default return something before writting full funct
 
-	d = dict(	dim=4, init_cells=3, 
-				auto_mode = AUTO_DEFAULT, 
-				waiter=WAITER_DEFAULT, max_round=MAX_ROUND_DEFAULT)
+	d = dict(	dim=16, init_cells=40, 
+				auto_mode = True, 
+				waiter=1,
+				max_round=40)
 	
 	return d
 
@@ -147,8 +148,8 @@ class GameOfLife(object) :
 
 		# build default space fill with 0
 		i = np.arange(self.dim)
-		self._space  			= self.build_default_space()
-		self.__default_space 	= self.build_default_space()
+		self._space  			= self.__build_default_space()
+		self.__default_space 	= self.__build_default_space()
 
 		# round
 		self._round = 0
@@ -183,25 +184,31 @@ class GameOfLife(object) :
 	def round(self):
 		return self._round
 
+
 	@property
 	def init_cells_loc(self):
 		return self._init_cells
+
 
 	@property
 	def init_cells_nb(self):
 		return len(self._init_cells)
 
+
 	@property
 	def dim(self):
 		return self._dim
+
 
 	@property	
 	def cells_loc(self):
 		return self._cells
 
+
 	@property	
 	def cells_nb(self):
 		return len(self._cells)
+
 
 	@property	
 	def space(self):
@@ -217,26 +224,30 @@ class GameOfLife(object) :
 
 		txt += s
 		txt +="\n"
-		txt +="round   = {}\n".format(self.round)
+		txt +="round  = {}\n".format(self.round)
 		txt +="cells  = {}\n".format(self.cells_nb)
 		txt += "\n" * 4
 
 		return txt
 
+
 	def __str__(self) : 
 		return self.space
+
 
 	def __repr__(self) : 
 		return self.space
 
+
 	def neighbours_nb(self, i, j):
-		return self._count_neighbours(i,j)
+		return self.__count_neighbours(i,j)
+
 
 	def neighbours_loc(self, i,j) : 
-		return self._give_neighbours_coords(i,j)
+		return self.__give_neighbours_coords(i,j)
 
 
-	def build_default_space(self) : 
+	def __build_default_space(self) : 
 
 		i = np.arange(self.dim)
 		return(pd.DataFrame(0, index=i , columns=i))
@@ -250,9 +261,8 @@ class GameOfLife(object) :
 		s = "\n" + str(self._space) ; s = s.replace("0", " ")
 		logging.info("old _space") 
 		logging.info(s)
-
 		
-		new_space = self.build_default_space()
+		new_space = self.__build_default_space()
 
 		logging.info(self._cells)
 		for i,j in self._cells : 
@@ -274,7 +284,7 @@ class GameOfLife(object) :
 		del_cells 	= list()
 		
 		for i,j in self.__list_of_coords : 
-			neighbours = self._count_neighbours(i,j)
+			neighbours = self.__count_neighbours(i,j)
 
 			if (i,j) in self._cells : 
 				if (neighbours == 2) or (neighbours == 3) : 
@@ -316,25 +326,24 @@ class GameOfLife(object) :
 		logging.info(self._cells)
 
 
-
-	def _count_neighbours(self, i,j) : 
+	def __count_neighbours(self, i,j) : 
 		"""count how many living cells for one coord """
 
-		# logging.info("_count_neighbours called")
+		# logging.info("__count_neighbours called")
 
 		neighbours = list()
 		
-		for (i,j) in self._give_neighbours_coords(i,j) : 
+		for (i,j) in self.__give_neighbours_coords(i,j) : 
 			if self._space.iloc[i,j] == 1 : 
 				neighbours.append(1)
 		
 		return len(neighbours)
 
 
-	def _give_neighbours_coords(self, i,j)  : 
+	def __give_neighbours_coords(self, i,j)  : 
 		"""give all coords of direct neihbourhood for one coord"""
 
-		# logging.info("_give_neighbours_coords called")
+		# logging.info("__give_neighbours_coords called")
 
 		candidates = [	(i+1, j+1), (i-1, j-1),
 						(i+1, j-1), (i-1, j+1),
@@ -356,21 +365,22 @@ class GameOfLife(object) :
 		"""launch a game session"""
 
 		print("init space")
+		os.system("clear")
 		print(self.space)
 
 		input("enter to start")
 
 		cont = True
 		while cont : 
+			os.system("clear")
 
 			self._next()
+			print(self.space)
 
 			# if cells == 0 stop the game
 			if not self._cells  : 
-				print(self.space)
 				cont = False
 				print("no more cells living")
-
 
 			# if max_round stop the game
 			if self._round == self._max_round : 
@@ -391,3 +401,6 @@ class GameOfLife(object) :
 			input("press <Enter> for next turn or <Crlt + C> to quit \n")
 
 		self._round+=1
+
+
+

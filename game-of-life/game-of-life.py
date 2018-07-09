@@ -15,6 +15,7 @@ find here the main function for my representtaion of the game-of-life
 # import 
 
 import os, sys, logging
+from src import * 
 
 
 # logging	
@@ -30,6 +31,7 @@ def main() :
 
 
 	intro()
+	input()
 	
 	options = arg_manager()
 
