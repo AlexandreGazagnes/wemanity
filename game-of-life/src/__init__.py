@@ -189,6 +189,9 @@ class GameOfLife(object) :
 	def cells_nb(self):
 		return len(self._cells)
 
+	@property	
+	def space(self):
+		return self._space
 
 	# def run(self, round) : 
 	# 	"""launch a game session"""

@@ -67,6 +67,13 @@ def test_GameOfLife0() :
 
 	options 	= arg_manager()
 	game 		= GameOfLife(options) 
+	game.round
+	game.dim
+	game.cells_loc
+	game.init_cells_loc
+	game.cells_nb
+	game.init_cells_nb
+	game.space
 
 
 # def test_GameOfLife1() : 
