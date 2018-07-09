@@ -41,9 +41,7 @@ def test_close() :
 def test_arg_manager0() : 
 	"""test arg manager without any cli"""
 
-	# without any cli
-
-	assert 1 == 0
+	options = arg_manager()
 
 
 def test_arg_manager1() : 
@@ -67,7 +65,8 @@ def test_GameOfLife0() :
 
 	# just init a GameOfLife with default features
 
-	assert 1 == 0
+	options 	= arg_manager()
+	game 		= GameOfLife(options) 
 
 
 def test_GameOfLife1() : 
