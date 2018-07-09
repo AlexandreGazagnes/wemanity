@@ -9,19 +9,41 @@ __init__.py
 
 # import 
 
-import os, sys, argparse, logging
+import os, sys, argparse, logging, random
+
+import pandas as pd
+import numpy as np
+
 from src import * 
 
 
 # constants 
 
-SIZE 		= None 		# space dim
-INIT_STATE	= None		# number of random cells
 
-MAX_ROUND 	= None		# ask to jump /stop an x number of loop
+# game dimension
+DIM_MIN 		= 5
+DIM_DEFAULT 	= 10
+DIM_MAX 		= 20
 
-AUTO 		= False		# auto or handly new loop
-WAITER 		= 1 		# second
+
+# if  INT --> # numb of cells in the space
+INIT_CELLS_DEFAULT 	= int(0.1 * DIM_DEFAULT**2)
+INIT_CELLS_MIN 		= 1
+INIT_CELLS_MAX 		= DIM_MAX
+
+# if LIST of Tuples --> defaul location for cels
+# INIT_CELLS = [(3,2), (3,3) ...]
+
+
+# auto mode eg loop without user input 
+AUTO_DEFAULT 	= False
+WAITER_DEFAULT 	= 0.5
+WAITER_MIN		= 0.1
+WAITER_MAX 		= 1
+
+# posible stop to avoid infinite loop
+MAX_ROUND_DEFAULT = 10
+
 
 
 
@@ -95,8 +117,9 @@ def arg_manager() :
 	# manage args from cli or display fancy user interface to ask user
 	# default return something before writting full funct
 
-	d = dict(	auto=AUTO, size=SIZE, init_cells = init_cells, 
-				waiter=WAITER, max_round=max_round)
+	d = dict(	dim=DIM_DEFAULT, init_cells=INIT_CELLS_DEFAULT, 
+				auto_mode = AUTO_DEFAULT, 
+				waiter=WAITER_DEFAULT, max_round=MAX_ROUND_DEFAULT)
 	
 	return d
 
@@ -109,14 +132,30 @@ def arg_manager() :
 
 class GameOfLife(object) : 
 
+
+	# class consts
+
+	__white_space 	= 	' '
+	__cell			= 	'o'
+
+
 	def __init__(self, options_dict) : 
 		"""init method"""
 
+		logging.info("init a new GameOfLife object")
 
-		self._space 	= None
-		self._cells 	= None
-		self._round 	= 0
+		# init attr
+		[ self.__setattr__(str("_"+key), val) for key, val in options_dict.items() ]
 
+		_index = np.arange(self.dim)
+		self._space  = pd.DataFrame(0, index=_index , columns=_index)
+		self.__default_space = self._space
+
+		self._turn 	= 0
+
+
+		self._list_of_coord = [	(i,j) 	for i in range(self._dim) 
+											for j in range(self._dim)]
 
 	def run(self, round) : 
 		"""launch a game session"""
