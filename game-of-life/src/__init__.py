@@ -211,7 +211,7 @@ class GameOfLife(object) :
 		return self._count_neighbours(i,j)
 
 	def neighbours_loc(self, i,j) : 
-		return self._count_neighbours(i,j) :
+		return self._give_neighbours_coords(i,j)
 
 	@property	
 	def space(self):
