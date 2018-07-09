@@ -24,3 +24,17 @@ import sys, logging, os
 
 l = logging.INFO
 logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
+
+
+
+def argparse(args=None) : 
+	"""
+	main function, please https://codingdojo.org/kata/Args/ for more info
+
+	positional args     : - 
+	optional args       : -
+	return              : List or Dict with typed ans casted args
+	raises              : TypeError if -l is not an int
+	                      NotADirectoryError if -d is not a directory
+	"""
+
