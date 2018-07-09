@@ -31,16 +31,16 @@ def test_do_raise_error() :
 	""" test good exception are raised"""
 
 	with pytest.raises(TypeError) : 
-		os.system("python3 argparse.py -p 80aa80 ")
+		argparse("python3 argparse.py -p 80aa80 ")
 
 	with pytest.raises(NotADirectoryError) : 		
-		os.system("python3 argparse.py -d -usr-logs")
+		argparse("python3 argparse.py -d -usr-logs")
 
 
 def test_detect_args() : 
 	"""test good return of argparse function"""
 
-	args = os.system("python3 argparse.py -l -p 8080 -d /home/")
+	args = argparse("python3 argparse.py -l -p 8080 -d /home/")
 	assert len(args) == 3
 	assert isinstance(args, dict)	
 
