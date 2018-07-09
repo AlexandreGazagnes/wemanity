@@ -106,7 +106,7 @@ def arg_manager() :
 	raises				: - 
 	"""
 
-	args = sys.args[1:]
+	args = sys.argv[1:]
 
 	# manage args from cli or display fancy user interface to ask user
 	# default return something before writting full funct
@@ -152,7 +152,7 @@ class GameOfLife(object) :
 		# if user just give a number => init a random location of cells 
 		if isinstance(self._init_cells, int) : 
 
-			self._cells = random.sample(self._list_of_coords, self._init_cells)
+			self._cells = random.sample(self.__list_of_coords, self._init_cells)
 			self._init_cells = self._cells
 
 		# else 
@@ -163,7 +163,7 @@ class GameOfLife(object) :
 		else :
 			raise ValueError("invalid init state")
 
-		logging.info(self._cell_coords)
+		logging.info(self._cells)
 
 	@property
 	def round(self):

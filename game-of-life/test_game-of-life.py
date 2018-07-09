@@ -44,20 +44,20 @@ def test_arg_manager0() :
 	options = arg_manager()
 
 
-def test_arg_manager1() : 
-	"""test arg manager with one or 2 max cli"""
+# def test_arg_manager1() : 
+# 	"""test arg manager with one or 2 max cli"""
 
-	# with one or 2 max cli
+# 	# with one or 2 max cli
 
-	assert 1 == 0
+# 	assert 1 == 0
 
 
-def test_arg_manager1() : 
-	"""test arg manager with all cli avialable """
+# def test_arg_manager1() : 
+# 	"""test arg manager with all cli avialable """
 
-	# with all cli avialable 
+# 	# with all cli avialable 
 
-	assert 1 == 0
+# 	assert 1 == 0
 
 
 def test_GameOfLife0() : 
@@ -69,53 +69,53 @@ def test_GameOfLife0() :
 	game 		= GameOfLife(options) 
 
 
-def test_GameOfLife1() : 
-	"""just init a GameOfLife instance"""
+# def test_GameOfLife1() : 
+# 	"""just init a GameOfLife instance"""
 
-	# just init a GameOfLife with random features
+# 	# just init a GameOfLife with random features
 	
-	assert 1 == 0
+# 	assert 1 == 0
 
 
-def test_GameOfLife2() : 
-	"""just init a GameOfLife instance"""
+# def test_GameOfLife2() : 
+# 	"""just init a GameOfLife instance"""
 
-	# just init a GameOfLife with random features
+# 	# just init a GameOfLife with random features
 	
-	assert 1 == 0
+# 	assert 1 == 0
 
 
-def test_expected_game0() : 
-	"""run a game session and assert result is conform to game expectation"""
+# def test_expected_game0() : 
+# 	"""run a game session and assert result is conform to game expectation"""
 
-	# with just one cell
+# 	# with just one cell
 	
-	assert 1 == 0
+# 	assert 1 == 0
 
 
-def test_expected_game1() : 
-	"""run a game session and assert result is conform to game expectation"""
+# def test_expected_game1() : 
+# 	"""run a game session and assert result is conform to game expectation"""
 
-	# with 2  cells
+# 	# with 2  cells
 
-	assert 1 == 0
+# 	assert 1 == 0
 	
 
 
-def test_expected_game2() : 
-	"""run a game session and assert result is conform to game expectation"""
+# def test_expected_game2() : 
+# 	"""run a game session and assert result is conform to game expectation"""
 
-	# with 3 cells
+# 	# with 3 cells
 	
-	assert 1 == 0
+# 	assert 1 == 0
 
 
-def test_expected_game3() : 
-	"""run a game session and assert result is conform to game expectation"""
+# def test_expected_game3() : 
+# 	"""run a game session and assert result is conform to game expectation"""
 
-	# with random state
+# 	# with random state
 	
-	assert 1 == 0
+# 	assert 1 == 0
 
 
 if __name__ == '__main__':
