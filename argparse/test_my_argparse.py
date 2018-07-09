@@ -30,6 +30,7 @@ def test_do_not_raise_error() :
 	os.system("python3 my_argparse.py -l -p 8080 -d /home/")
 	os.system("python3 my_argparse.py -l -p 8080 -k 12222 -f 'sdnie' -d /home/")
 
+
 def test_do_raise_error() : 
 	""" test good exception are raised"""
 
