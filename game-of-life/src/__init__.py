@@ -175,7 +175,9 @@ class GameOfLife(object) :
 
 		self._update_space()
 
-		logging.info(self._space)
+		s = "\n" + str(self._space)
+		s = s.replace("0", " ")
+		logging.info(s)
 
 		logging.info("end of init")
 
@@ -204,8 +206,7 @@ class GameOfLife(object) :
 	@property	
 	def cells_nb(self):
 		return len(self._cells)
-
-	@property	
+	
 	def neighbours(self, i, j):
 		return self._count_neighbours(i,j)
 
@@ -280,12 +281,14 @@ class GameOfLife(object) :
 	def _give_neighbours_coords(self, i,j)  : 
 		"""give all coords of direct neihbourhood for one coord"""
 
-		coords = [	(i+1, j+1), (i-1, j-1),
+		candidates = [	(i+1, j+1), (i-1, j-1),
 						(i+1, j-1), (i-1, j+1),
 						(i, j-1), (i, j+1),
 						(i+1, j), (i-1, j)	]
 
-		return coords
+		autorized = [(i,j) for (i,j) in candidates if (i,j) in self.__list_of_coords]
+
+		return autorized
 
 
 	# def run(self, round) : 

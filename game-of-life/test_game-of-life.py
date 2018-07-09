@@ -67,6 +67,7 @@ def test_GameOfLife0() :
 
 	options 	= arg_manager()
 	game 		= GameOfLife(options) 
+	
 	game.round
 	game.dim
 	game.cells_loc
@@ -82,6 +83,7 @@ def test_GameOfLife1() :
 	options 	= arg_manager()
 	options		["init_cells"] = [(2,2), (3,2)]
 	game 		= GameOfLife(options) 
+	
 	game.round
 	game.dim
 	game.cells_loc
@@ -89,13 +91,33 @@ def test_GameOfLife1() :
 	game.cells_nb
 	game.init_cells_nb
 	game.space
+	
 	assert (2,2) in game.cells_loc
 	assert (3,2) in game.cells_loc
-	assert game.neighbours(3,1) == 1
-	assert game.neighbours(3,2) == 1
-	assert game.neighbours(2,2) == 1
-	assert game.neighbours(4,4) == 0
 	assert game.neighbours(0,0) == 0
+
+	assert game.neighbours(2,1) == 2
+	assert game.neighbours(2,2) == 1
+
+	assert game.neighbours(1,2) == 1
+	assert game.neighbours(1,1) == 1
+
+	assert game.neighbours(3,1) == 2
+	assert game.neighbours(3,3) == 2
+	assert game.neighbours(3,2) == 1
+
+	assert game.neighbours(4,1) == 1
+	assert game.neighbours(4,2) == 1
+	assert game.neighbours(4,3) == 1
+
+	assert game.neighbours(5,1) == 0
+	assert game.neighbours(5,2) == 0
+	assert game.neighbours(5,3) == 0
+
+
+
+
+
 
 # def test_GameOfLife2() : 
 # 	"""just init a GameOfLife instance"""
