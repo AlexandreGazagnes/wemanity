@@ -54,4 +54,19 @@ def argparse(args=None) :
 	logging.info(user_args)
 
 	# create a container to return
-	dict_args = dict(l=False, p=0, d="/home/")
+	dict_args = dict(l=False, p=0, d="")
+
+	# log
+	if "-l" in user_args : 
+		dict_args["l"] = True
+	
+	# port 
+	if "-p" in user_args  : 
+		dict_args["p"] = user_args[1 + user_args.index("-p")]
+	
+	# directory
+	if "-d" in user_args  : 
+		dict_args["d"] = user_args[1 + user_args.index("-d")]
+
+	# basic logging
+	logging.info(dict_args)
