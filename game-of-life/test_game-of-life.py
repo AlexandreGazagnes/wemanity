@@ -76,12 +76,22 @@ def test_GameOfLife0() :
 	game.space
 
 
-# def test_GameOfLife1() : 
-# 	"""just init a GameOfLife instance"""
+def test_GameOfLife1() : 
+	"""just init a GameOfLife with defined init cells"""
 
-# 	# just init a GameOfLife with random features
+	options 	= arg_manager()
+	options		["init_cells"] = [(2,2), (3,2)]
+	game 		= GameOfLife(options) 
+	game.round
+	game.dim
+	game.cells_loc
+	game.init_cells_loc
+	game.cells_nb
+	game.init_cells_nb
+	game.space
+	assert (2,2) in game.cells_loc
+	assert (3,2) in game.cells_loc
 	
-# 	assert 1 == 0
 
 
 # def test_GameOfLife2() : 

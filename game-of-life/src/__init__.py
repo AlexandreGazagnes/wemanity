@@ -206,6 +206,10 @@ class GameOfLife(object) :
 		return len(self._cells)
 
 	@property	
+	def neighbours(self, i, j):
+		return self._count_neighbours(i,j)
+
+	@property	
 	def space(self):
 
 		txt = "\n"*4
@@ -282,7 +286,7 @@ class GameOfLife(object) :
 						(i+1, j), (i-1, j)	]
 
 		return coords
-		
+
 
 	# def run(self, round) : 
 	# 	"""launch a game session"""
