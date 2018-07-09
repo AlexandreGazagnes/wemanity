@@ -206,12 +206,6 @@ class GameOfLife(object) :
 	@property	
 	def cells_nb(self):
 		return len(self._cells)
-	
-	def neighbours_nb(self, i, j):
-		return self._count_neighbours(i,j)
-
-	def neighbours_loc(self, i,j) : 
-		return self._give_neighbours_coords(i,j)
 
 	@property	
 	def space(self):
@@ -233,15 +227,17 @@ class GameOfLife(object) :
 
 		return txt
 
-
 	def __str__(self) : 
-
 		return self.space
-
 
 	def __repr__(self) : 
-
 		return self.space
+
+	def neighbours_nb(self, i, j):
+		return self._count_neighbours(i,j)
+
+	def neighbours_loc(self, i,j) : 
+		return self._give_neighbours_coords(i,j)
 
 
 	def _update_space(self) : 
@@ -263,13 +259,29 @@ class GameOfLife(object) :
 		add_cells 	= list()
 		del_cells 	= list()
 		
-		for i,j in self._cells : 
+		for i,j in self.__list_of_coords : 
+			neighbours = self._count_neighbours(i,j)
 
-			pass
+			if (i,j) in self._cells : 
+				if (neighbours == 2) or (neighbours == 3) : 
+					pass
+				else :
+					del_cells.append((i,j))
+
+			else : 
+				if neighbours == 3 : 
+					add_cells.append((i,j))
+				else :
+					pass
+
+		self._cells = [(i,j) for i,j in self._cells if (i,j) not in del_cells]
+		self._cells = self._cells.extend(add_cells)
 
 
 	def _count_neighbours(self, i,j) : 
 		"""count how many living cells for one coord """
+
+		logging.info("_count_neighbours called")
 
 		neighbours = list()
 		
@@ -280,9 +292,10 @@ class GameOfLife(object) :
 		return len(neighbours)
 
 
-
 	def _give_neighbours_coords(self, i,j)  : 
 		"""give all coords of direct neihbourhood for one coord"""
+
+		logging.info("_give_neighbours_coords called")
 
 		candidates = [	(i+1, j+1), (i-1, j-1),
 						(i+1, j-1), (i-1, j+1),
@@ -330,3 +343,10 @@ class GameOfLife(object) :
 	# 		self.round+=1
 
 
+	def __looper(self) : 
+
+		if self._auto_mode : 
+			time.sleep(self._waiter)
+			print("press <Crlt + C> to quit")
+		else : 
+			input("press <Enter> for next turn or <Crlt + C> to quit \n")
