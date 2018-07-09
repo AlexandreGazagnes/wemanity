@@ -249,7 +249,40 @@ class GameOfLife(object) :
 		self._space = new_space
 
 
+	def _update_cells(self) : 	
+		"""for each round update wich cell live or die"""
 
+		add_cells 	= list()
+		del_cells 	= list()
+		
+		for i,j in self._cells : 
+
+			pass
+
+
+	def _count_neighbours(self, i,j) : 
+		"""count how many living cells for one coord """
+
+		neighbours = list()
+		
+		for (i,j) in self._give_neighbours_coords(i,j) : 
+			if self._space.iloc[i,j] == 1 : 
+				neighbours.append(1)
+		
+		return len(neighbours)
+
+
+
+	def _give_neighbours_coords(self, i,j)  : 
+		"""give all coords of direct neihbourhood for one coord"""
+
+		coords = [	(i+1, j+1), (i-1, j-1),
+						(i+1, j-1), (i-1, j+1),
+						(i, j-1), (i, j+1),
+						(i+1, j), (i-1, j)	]
+
+		return coords
+		
 
 	# def run(self, round) : 
 	# 	"""launch a game session"""
@@ -285,23 +318,5 @@ class GameOfLife(object) :
 	# 			print("end")
 
 	# 		self.round+=1
-	
-
-	# def __str__(self) : 
-	# 	"""over write the str method"""
-		
-	# 	pass
-		
-
-	# def __update_space(self) : 
-	# 	"""update space representation from cells list"""
-
-	# 	pass
-
-
-	# def __update_cells(self) : 
-	# 	"""define from rules living/dying cells for each round"""
-
-	# 	pass
 
 
