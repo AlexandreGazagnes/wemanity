@@ -28,8 +28,7 @@ logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 
 def argparse(args=None) : 
-	"""
-	main function, please https://codingdojo.org/kata/Args/ for more info
+	"""main function, please https://codingdojo.org/kata/Args/ for more info
 
 	positional args     : - 
 	optional args       : 'args'- for tests only - a string wich simulate the CLI arguments
@@ -70,3 +69,39 @@ def argparse(args=None) :
 
 	# basic logging
 	logging.info(dict_args)
+
+
+	# check if args are goods : 
+	
+	p = dict_args["p"]
+
+	try:
+		dict_args["p"] = int(dict_args["p"])
+	except :
+		p = dict_args["p"]
+		raise TypeError(	"arg: -p, val :{} - type error"
+									" : expected a < int >,"
+									" recieved a < {} >".format(p, type(p)))
+
+	d = dict_args["d"]
+	
+	if not os.path.exists(d): 
+		raise NotADirectoryError(	"arg: -d, val: {} - "
+									"invalid path".format(d))
+
+	# basic logging
+	logging.info(dict_args)
+
+	return dict_args
+
+
+# main	
+
+def main() : 
+
+	return argparse()
+
+
+if __name__ == '__main__':
+	main()
+
