@@ -32,7 +32,8 @@ def argparse(args=None) :
 	main function, please https://codingdojo.org/kata/Args/ for more info
 
 	positional args     : - 
-	optional args       : -
+	optional args       : 'args'- for tests only - a string wich simulate the CLI arguments
+	                      for a 'normal' usage of the package please just call argparse()
 	return              : List or Dict with typed ans casted args
 	raises              : TypeError if -l is not an int
 	                      NotADirectoryError if -d is not a directory
@@ -44,6 +45,10 @@ def argparse(args=None) :
 	else : 
 		if isinstance(args, str) : 	
 			user_args = args.split(" ")[1:]
+		else : 
+			raise TypeError("TESTING args :{} - type error"
+									" : expected a < str >,"
+									" recieved a < {} >".format(args, type(args)))
 
 	# basic logging
 	logging.info(user_args)
