@@ -256,6 +256,8 @@ class GameOfLife(object) :
 	def _update_cells(self) : 	
 		"""for each round update wich cell live or die"""
 
+		logging.info("update_cells called")
+
 		add_cells 	= list()
 		del_cells 	= list()
 		
@@ -307,40 +309,44 @@ class GameOfLife(object) :
 		return autorized
 
 
-	# def run(self, round) : 
-	# 	"""launch a game session"""
+	def run(self, round) : 
+		"""launch a game session"""
 
-	# 	print("init space")
-	# 	print(self._space)
+		print("init space")
+		print(self.space)
 
-	# 	input("enter to start")
+		input("enter to start")
 
-	# 	cont = True
-	# 	while cont : 
-
-
-	# 		# update params
-	# 		self.__update_cells()
-	# 		self.__update_space()
+		cont = True
+		while cont : 
 
 
-	# 		# auto/manual next turn 
-	# 		if self.auto : 	
-	# 			time.sleep(self.waiter)
-	# 		else : 			
-	# 			input("enter to continue")
+			logging.info("cells before")
+			logging.info(self.cells_nb)
+			logging.info(self.cells_loc)
+			print(self.space)
+			self._update_cells()
+			self._update_space()
 
-	# 		# if cells == 0 stop the game
-	# 		if not self.cells  : 
-	# 			cont = False
+			logging.info("cells after")
+			logging.info(self.cells_nb)
+			logging.info(self.cells_loc)
+
+			# if cells == 0 stop the game
+			if not self._cells  : 
+				print(self.space)
+				cont = False
+				print("no more cells living")
 
 
-	# 		# if max_round stop the game
-	# 		if self.round == self.max_round : 
-	# 			cont = False
-	# 			print("end")
+			# if max_round stop the game
+			if self._round == self._max_round : 
+				cont = False
+				print("last round")
 
-	# 		self.round+=1
+			self.__looper()
+			
+		print("end")
 
 
 	def __looper(self) : 
@@ -350,3 +356,5 @@ class GameOfLife(object) :
 			print("press <Crlt + C> to quit")
 		else : 
 			input("press <Enter> for next turn or <Crlt + C> to quit \n")
+
+		self.round+=1
