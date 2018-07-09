@@ -38,3 +38,15 @@ def argparse(args=None) :
 	                      NotADirectoryError if -d is not a directory
 	"""
 
+	# extract user args
+	if not args : 	
+		user_args = sys.argv[1:]
+	else : 
+		if isinstance(args, str) : 	
+			user_args = args.split(" ")[1:]
+
+	# basic logging
+	logging.info(user_args)
+
+	# create a container to return
+	dict_args = dict(l=False, p=0, d="/home/")
