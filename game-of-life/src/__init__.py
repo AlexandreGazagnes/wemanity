@@ -109,7 +109,7 @@ def arg_manager() :
 
 class GameOfLife(object) : 
 
-	def __init__(self.options_dict) : 
+	def __init__(self, options_dict) : 
 		"""init method"""
 
 

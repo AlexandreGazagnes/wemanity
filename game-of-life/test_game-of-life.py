@@ -43,7 +43,7 @@ def test_arg_manager0() :
 
 	# without any cli
 
-	pass
+	assert 1 == 0
 
 
 def test_arg_manager1() : 
@@ -51,7 +51,7 @@ def test_arg_manager1() :
 
 	# with one or 2 max cli
 
-	pass
+	assert 1 == 0
 
 
 def test_arg_manager1() : 
@@ -59,7 +59,7 @@ def test_arg_manager1() :
 
 	# with all cli avialable 
 
-	pass
+	assert 1 == 0
 
 
 def test_GameOfLife0() : 
@@ -67,7 +67,7 @@ def test_GameOfLife0() :
 
 	# just init a GameOfLife with default features
 
-	pass
+	assert 1 == 0
 
 
 def test_GameOfLife1() : 
@@ -75,7 +75,7 @@ def test_GameOfLife1() :
 
 	# just init a GameOfLife with random features
 	
-	pass
+	assert 1 == 0
 
 
 def test_GameOfLife2() : 
@@ -83,7 +83,7 @@ def test_GameOfLife2() :
 
 	# just init a GameOfLife with random features
 	
-	pass
+	assert 1 == 0
 
 
 def test_expected_game0() : 
@@ -91,7 +91,7 @@ def test_expected_game0() :
 
 	# with just one cell
 	
-	pass
+	assert 1 == 0
 
 
 def test_expected_game1() : 
@@ -99,7 +99,7 @@ def test_expected_game1() :
 
 	# with 2  cells
 
-	pass
+	assert 1 == 0
 	
 
 
@@ -108,7 +108,7 @@ def test_expected_game2() :
 
 	# with 3 cells
 	
-	pass
+	assert 1 == 0
 
 
 def test_expected_game3() : 
@@ -116,7 +116,7 @@ def test_expected_game3() :
 
 	# with random state
 	
-	pass
+	assert 1 == 0
 
 
 if __name__ == '__main__':
