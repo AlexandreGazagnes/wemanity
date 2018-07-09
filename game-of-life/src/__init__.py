@@ -119,7 +119,7 @@ def arg_manager() :
 	# manage args from cli or display fancy user interface to ask user
 	# default return something before writting full funct
 
-	d = dict(	dim=DIM_DEFAULT, init_cells=INIT_CELLS_DEFAULT, 
+	d = dict(	dim=4, init_cells=3, 
 				auto_mode = AUTO_DEFAULT, 
 				waiter=WAITER_DEFAULT, max_round=MAX_ROUND_DEFAULT)
 	
@@ -147,8 +147,8 @@ class GameOfLife(object) :
 
 		# build default space fill with 0
 		i = np.arange(self.dim)
-		self._space  = pd.DataFrame(0, index=i , columns=i)
-		self.__default_space = self._space
+		self._space  			= self.build_default_space()
+		self.__default_space 	= self.build_default_space()
 
 		# round
 		self._round = 0
@@ -174,10 +174,6 @@ class GameOfLife(object) :
 		logging.info(self._cells)
 
 		self._update_space()
-
-		s = "\n" + str(self._space)
-		s = s.replace("0", " ")
-		logging.info(s)
 
 		logging.info("end of init")
 
@@ -240,17 +236,33 @@ class GameOfLife(object) :
 		return self._give_neighbours_coords(i,j)
 
 
+	def build_default_space(self) : 
+
+		i = np.arange(self.dim)
+		return(pd.DataFrame(0, index=i , columns=i))
+
+
 	def _update_space(self) : 
 		"""update space regarding cells coords"""
 
 		logging.info("update_space called")
 
-		new_space = self.__default_space
+		s = "\n" + str(self._space) ; s = s.replace("0", " ")
+		logging.info("old _space") 
+		logging.info(s)
 
+		
+		new_space = self.build_default_space()
+
+		logging.info(self._cells)
 		for i,j in self._cells : 
 			new_space.loc[i,j] = 1 
 
 		self._space = new_space
+
+		s = "\n" + str(self._space) ; s = s.replace("0", " ")
+		logging.info("new _space")
+		logging.info(s)
 
 
 	def _update_cells(self) : 	
@@ -275,26 +287,34 @@ class GameOfLife(object) :
 					add_cells.append((i,j))
 				else :
 					pass
-		logging.info("_cells")
+
+		new_cells = list(self._cells)
+		logging.info("new_cells  = copy _cells list")
+		logging.info(new_cells)
 		logging.info(self._cells)
 
-		logging.info("add_cells")
+		logging.info({(i,j) : self.neighbours_nb(i,j) for i,j in self._cells})
+
+		logging.info("add_cells list")
 		logging.info(add_cells)
 
-		logging.info("del_cells")
+		logging.info("del_cells list")
 		logging.info(del_cells)
 
 		for (i,j) in self._cells : 
 			if (i,j) in del_cells : 
-				self._cells.remove((i,j))
+				new_cells.remove((i,j))
 
 		logging.info("_cells after remove")
-		logging.info(self._cells)
+		logging.info(new_cells)
 
-		self._cells = self._cells.extend(add_cells)
+		new_cells.extend(add_cells)
 
 		logging.info("_cells after extend")
+		logging.info(new_cells)
+		self._cells = new_cells
 		logging.info(self._cells)
+
 
 
 	def _count_neighbours(self, i,j) : 
@@ -326,26 +346,10 @@ class GameOfLife(object) :
 		return autorized
 
 
-	def _next(self) : 
-
-		logging.info("cells before")
-		logging.info(self.cells_nb)
-		logging.info(self.cells_loc)
-		
-		# print(self.space)
-		
-		s = "\n" + str(self._space) ; s = s.replace("0", " ")
-		logging.info(s)
+	def _next(self) : 				
 
 		self._update_cells()
-
-		logging.info("cells after")
-		logging.info(self.cells_nb)
-		logging.info(self.cells_loc)
-
-
 		self._update_space()
-
 
 
 	def run(self) : 
@@ -386,4 +390,4 @@ class GameOfLife(object) :
 		else : 
 			input("press <Enter> for next turn or <Crlt + C> to quit \n")
 
-		self.round+=1
+		self._round+=1
