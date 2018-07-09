@@ -91,8 +91,11 @@ def test_GameOfLife1() :
 	game.space
 	assert (2,2) in game.cells_loc
 	assert (3,2) in game.cells_loc
-	
-
+	assert game.neighbours(3,1) == 1
+	assert game.neighbours(3,2) == 1
+	assert game.neighbours(2,2) == 1
+	assert game.neighbours(4,4) == 0
+	assert game.neighbours(0,0) == 0
 
 # def test_GameOfLife2() : 
 # 	"""just init a GameOfLife instance"""
