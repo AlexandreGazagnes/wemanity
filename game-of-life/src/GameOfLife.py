@@ -86,8 +86,6 @@ class GameOfLife(object) :
 		logging.info("end of init")
 
 
-
-
 	@property
 	def round(self):
 		return self._round
@@ -234,6 +232,22 @@ class GameOfLife(object) :
 		logging.info(self._cells)
 
 
+	def __looper(self) : 
+
+		if self._auto_mode : 
+			time.sleep(self._waiter)
+			print("press <Crlt + Z> to quit")
+		else : 
+			input( "press <Enter> for next iteration"
+					"press <Crlt + Z> to quit \n")
+
+		self._round+=1
+		self.__last_cells = self._cells
+		if self._round %2 : 
+			self.__2last_cells = self._cells
+
+
+
 	def __count_neighbours(self, i,j) : 
 		"""count how many living cells for one coord """
 
@@ -288,16 +302,16 @@ class GameOfLife(object) :
 
 			if self.__detect_no_lives() : 
 				logging.info(1)
-				return self.round, len(self._cells), 1
+				return self.round, 1
 			if self.__detect_last_round() : 
 				logging.info(2)
-				return self.round, len(self._cells), 2
+				return self.round, 2
 			if self.__detect_game_fixed(self.__last_cells) : 
 				logging.info(3)
-				return self.round, len(self._cells), 3
+				return self.round, 3
 			if self.__detect_game_fixed(self.__2last_cells) : 
 				logging.info(4)
-				return self.round, len(self._cells), 4
+				return self.round, 4
 			else : 
 				self.__looper()
 
@@ -327,6 +341,5 @@ class GameOfLife(object) :
 		else : 
 			same = False
 
-			
 
 
