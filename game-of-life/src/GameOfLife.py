@@ -40,8 +40,6 @@ class GameOfLife(object) :
 	def __init__(self, options_dict=None) : 
 		"""init method"""
 
-		logging.info("init a new GameOfLife object")
-
 
 		intro()
 
@@ -79,11 +77,10 @@ class GameOfLife(object) :
 		else :
 			raise ValueError("invalid init state")
 
-		logging.info(self._cells)
+
 
 		self._update_space()
 
-		logging.info("end of init")
 
 
 	@property
@@ -162,11 +159,8 @@ class GameOfLife(object) :
 	def _update_space(self) : 
 		"""update space regarding cells coords"""
 
-		logging.info("update_space called")
-
 		s = "\n" + str(self._space) ; s = s.replace("0", " ")
-		logging.info("old _space") 
-		logging.info(s)
+
 		
 		new_space = self.__build_default_space()
 
@@ -183,8 +177,6 @@ class GameOfLife(object) :
 
 	def _update_cells(self) : 	
 		"""for each round update wich cell live or die"""
-
-		logging.info("update_cells called")
 
 		add_cells 	= list()
 		del_cells 	= list()
@@ -217,7 +209,6 @@ class GameOfLife(object) :
 		new_cells.extend(add_cells)
 
 		self._cells = new_cells
-		logging.info(self._cells)
 
 
 	def __looper(self) : 
