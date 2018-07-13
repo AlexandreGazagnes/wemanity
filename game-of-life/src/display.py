@@ -75,6 +75,48 @@ def close() :
 
 
 
+
+
+def options() : 
+
+	header()
+
+	msg = 	"              OPTIONS\n"+\
+			"_________________________________________\n"
+
+	print(msg)
+
+
+def game() : 
+
+	header()
+
+	msg = 	"                GAME\n"+\
+			"_________________________________________\n"
+
+	print(msg)
+
+
+def welcome() : 
+
+	header()
+
+	msg = 	"              WELCOME\n"+\
+			"_________________________________________\n"
+
+	print(msg)
+
+
+def end() : 
+
+	header()
+
+	msg = 	"              END\n"+\
+			"_________________________________________\n"
+
+	print(msg)
+
+
 def end_no_lives() : 
 
 	msg = 	"--------------------------------------------\n"+\
