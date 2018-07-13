@@ -302,4 +302,28 @@ class GameOfLife(object) :
 		self._round+=1
 
 
+	def __detect_no_lives(self) : 
+			# if cells == 0 stop the game
+
+			if not self._cells  : 
+				end_no_lives()
+				return True
+
+
+	def __detect_last_round(self) : 
+		# if max_round stop the game
+		if self._round == self._max_round : 
+			end_last_round()
+			return True
+
+	def __detect_game_fixed(self, arg) : 
+		# eval if game fixed with last_round
+		if len(arg) == len(self._cells) : 
+			for i in  arg : 
+				if i not in self._cells : 
+					return False
+			end_game_fixed()
+			return True
+		else : 
+			same = False
 
