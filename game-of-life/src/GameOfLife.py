@@ -7,6 +7,25 @@ GameOfLife.py
 """
 
 
+"""
+find here the main class of our project GameOfLife. Our argument manager (arg_manager) is called directly from the __init__ methode for good readability of game-of-life/main.py.
+a specific effort regarding private args and method was done :)
+see all information bellow in doctrings and comments 
+enjoy :) :)
+"""
+
+
+# import 
+
+import os, sys, argparse, logging, random, time
+
+import pandas as pd
+import numpy as np
+
+from src.display import *
+from src.arg_manager import * 
+
+
 # class 
 
 class GameOfLife(object) : 

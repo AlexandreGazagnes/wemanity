@@ -7,11 +7,18 @@ consts.py
 """
 
 
+"""
+find here all important features with 3 main values : Default, Min and Max
+These consts are temporarly in a separate file but should be moved in an ArgManager class as Class constants
+see various comments bellow for more information
+"""
+
+
 # constants 
 
 # game dimension
 DIM_MIN 		= 5
-DIM_DEFAULT 	= 10
+DIM_DEFAULT 		= 10
 DIM_MAX 		= 20
 
 # if  INT --> # numb of cells in the space

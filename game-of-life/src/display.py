@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 #-*- coding: utf8 -*-
 
@@ -6,6 +5,18 @@
 """
 display.py
 """
+
+
+"""
+Find here all print functions organized in master level (intro for exemple), and various sub levels (header for exemple)
+even if it is a little overkilled, it is better to have all this features in the same module
+see various comments and doctring for more information
+"""
+
+
+# import 
+
+import os, logging
 
 
 # functions

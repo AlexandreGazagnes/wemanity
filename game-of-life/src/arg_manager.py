@@ -7,6 +7,21 @@ arg_manager.py
 """
 
 
+"""
+find here all arguments manager instructions
+eg arg_manager is the main function, wich will call an argument builder and all arguments user interface ("ask") and checking ("check") functions
+this arg_manager could become a class in the next tags, just to increase code readability
+see various docstrings bellow for more information
+"""
+
+
+# import 
+
+import os, sys, argparse, logging
+from src.consts import *
+from src.display import options
+
+
 # functions
 
 def arg_manager() : 
