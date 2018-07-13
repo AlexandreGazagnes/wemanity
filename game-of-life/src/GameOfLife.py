@@ -254,52 +254,45 @@ class GameOfLife(object) :
 		return autorized
 
 
+
+
 	def _next(self) : 				
 
 		self._update_cells()
 		self._update_space()
+		print(self.space)
 
 
 	def run(self) : 
 		"""launch a game session"""
 
-		print("init space")
 		os.system("clear")
+		game()
 		print(self.space)
 
-		input("enter to start")
+		input("press < Enter > to continue...\n")	
 
-		cont = True
-		while cont : 
+		self.__cont = True
+		while self.__cont : 
 			os.system("clear")
+			game()
 
 			self._next()
-			print(self.space)
 
-			# if cells == 0 stop the game
-			if not self._cells  : 
-				cont = False
-				print("no more cells living")
-
-			# if max_round stop the game
-			if self._round == self._max_round : 
-				cont = False
-				print("last round")
-
-			self.__looper()
-			
-		print("end")
-
-
-	def __looper(self) : 
-
-		if self._auto_mode : 
-			time.sleep(self._waiter)
-			print("press <Crlt + C> to quit")
-		else : 
-			input("press <Enter> for next turn or <Crlt + C> to quit \n")
-
-		self._round+=1
+			if self.__detect_no_lives() : 
+				logging.info(1)
+				return self.round, len(self._cells), 1
+			if self.__detect_last_round() : 
+				logging.info(2)
+				return self.round, len(self._cells), 2
+			if self.__detect_game_fixed(self.__last_cells) : 
+				logging.info(3)
+				return self.round, len(self._cells), 3
+			if self.__detect_game_fixed(self.__2last_cells) : 
+				logging.info(4)
+				return self.round, len(self._cells), 4
+			else : 
+				self.__looper()
 
 
 	def __detect_no_lives(self) : 
@@ -326,4 +319,7 @@ class GameOfLife(object) :
 			return True
 		else : 
 			same = False
+
+			
+
 
