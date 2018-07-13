@@ -37,12 +37,18 @@ class GameOfLife(object) :
 	__cell			= 	'o'
 
 
-	def __init__(self, options_dict) : 
+	def __init__(self, options_dict=None) : 
 		"""init method"""
 
 		logging.info("init a new GameOfLife object")
 
+
+		intro()
+
 		# init attr
+
+		options_dict = arg_manager(options_dict)
+
 		[ self.__setattr__(str("_"+key), val) for key, val in options_dict.items() ]
 
 		# build default space fill with 0
@@ -62,6 +68,8 @@ class GameOfLife(object) :
 
 			self._cells = random.sample(self.__list_of_coords, self._init_cells)
 			self._init_cells = self._cells
+			self.__last_cells = self._cells
+			self.__2last_cells = self._cells
 
 		# else 
 		elif isinstance(self._init_cells, list) : 
@@ -76,6 +84,7 @@ class GameOfLife(object) :
 		self._update_space()
 
 		logging.info("end of init")
+
 
 
 
@@ -252,8 +261,6 @@ class GameOfLife(object) :
 		autorized = [(i,j) for (i,j) in candidates if (i,j) in self.__list_of_coords]
 
 		return autorized
-
-
 
 
 	def _next(self) : 				
