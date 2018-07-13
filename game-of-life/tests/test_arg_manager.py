@@ -27,5 +27,3 @@ from src import *
 
 l = logging.INFO
 logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
-
-
