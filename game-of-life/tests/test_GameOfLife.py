@@ -43,48 +43,71 @@ def test_next_GOL() :
 
 def test_run_GOL() : 
 	game = GameOfLife()
-	iteration, exit_value = game.run()
+	iteration, nb_cells, exit_value = game.run()
 	assert isinstance(iteration, int)
 	assert isinstance(exit_value, int)
+	assert isinstance(nb_cells, int)
 
 
 def test_GOL_block() :
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run() 
+	assert (iteration, nb_cells, exit_value) == game.run() 
 
 
 def test_GOL_Beehive() : 
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run()
+	assert (iteration, nb_cells, exit_value) == game.run()
 
 
 def test_GOL_Loaf() : 
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run()
+	assert (iteration, nb_cells, exit_value) == game.run()
 
 
 def test_GOL_Boat() : 
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run()
+	assert (iteration, nb_cells, exit_value) == game.run()
 
 
 def test_GOL_Tub() : 
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run()
+	assert (iteration, nb_cells, exit_value) == game.run()
 
 
 def test_GOL_Blinker() : 
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run()
+	assert (iteration, nb_cells, exit_value) == game.run()
 
 
 def test_GOL_Toad() : 
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run()
+	assert (iteration, nb_cells, exit_value) == game.run()
 
 
 def test_GOL_Beacon() : 
 	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
-	assert (iteration, exit_value) == game.run()
+	assert (iteration, nb_cells, exit_value) == game.run()
+
+
+def test_GOL_config0() : 
+	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
+	assert (iteration, nb_cells, exit_value) == game.run()
+
+
+def test_GOL_config1() : 
+	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
+	assert (iteration, nb_cells, exit_value) == game.run()
+
+
+def test_GOL_config2() : 
+	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
+	assert (iteration, nb_cells, exit_value) == game.run()
+
+
+def test_GOL_config3() : 
+	game = GameOfLife(init_cells:[(0,0), (0,0), ...])
+	assert (iteration, nb_cells, exit_value) == game.run()
+
+
 
 
