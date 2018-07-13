@@ -205,29 +205,17 @@ class GameOfLife(object) :
 					pass
 
 		new_cells = list(self._cells)
-		logging.info("new_cells  = copy _cells list")
-		logging.info(new_cells)
-		logging.info(self._cells)
 
 		logging.info({(i,j) : self.neighbours_nb(i,j) for i,j in self._cells})
 
-		logging.info("add_cells list")
-		logging.info(add_cells)
 
-		logging.info("del_cells list")
-		logging.info(del_cells)
 
 		for (i,j) in self._cells : 
 			if (i,j) in del_cells : 
 				new_cells.remove((i,j))
 
-		logging.info("_cells after remove")
-		logging.info(new_cells)
-
 		new_cells.extend(add_cells)
 
-		logging.info("_cells after extend")
-		logging.info(new_cells)
 		self._cells = new_cells
 		logging.info(self._cells)
 
