@@ -74,3 +74,37 @@ def close() :
 	return 0
 
 
+
+def end_no_lives() : 
+
+	msg = 	"--------------------------------------------\n"+\
+			"         END --> no more cells living\n"   +\
+			"--------------------------------------------\n"+\
+			"\n" * 2
+
+	print(msg)
+	close()
+
+
+def end_last_round() : 
+
+	msg = 	"--------------------------------------------\n"+\
+			"        END --> maximum round reached     \n"   +\
+			"--------------------------------------------\n"+\
+			"\n" * 2
+
+	print(msg)
+	close()
+
+
+def end_game_fixed() : 
+
+	msg = 	"--------------------------------------------\n"+\
+			"END --> gamed fixed no more evol can happend    \n"   +\
+			"--------------------------------------------\n"+\
+			"\n" * 2
+
+	print(msg)
+	close()
+
+
