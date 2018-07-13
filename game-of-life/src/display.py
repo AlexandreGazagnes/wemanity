@@ -21,6 +21,7 @@ import os, logging
 
 # functions
 
+
 def intro() : 
 	"""basic welcome screen with print out instcuctions to stdout
 
@@ -35,14 +36,18 @@ def intro() :
 
 	os.system("clear")
 
-	msg = str(	"#########################################\n"
-				"\n"
-				"              GAME OF LIFE               \n"
-				"\n"
-				"#########################################\n"
-				"\n\n")
+	welcome()
+	print("\n\n")
+
+	msg="The game is a zero-player game, meaning that its evolution is determined\n"+\
+		"by its initial state, requiring no further input. One interacts with\n"+\
+		"the Game of Life by creating an initial configuration and observing how it\n"+\
+		"evolves, or, for advanced players, by creating patterns with particular\n"+\
+		"properties.\n"
 
 	print(msg)
+
+	input("press <Enter> to continue...\n")	
 
 	return 0
 
@@ -58,21 +63,25 @@ def close() :
 	raises				: - 
 	"""
 
-	logging.info("closeo() called")
+	logging.info("close() called")
 
+	input("\n\npress <Enter> to end the program...\n\n")
 
+	os.system("clear")
 
-	msg = str(	"#########################################\n"
+	end()
+
+	msg = str(	"\n\n"
+				"#########################################\n"
 				"\n"
 				"              bye bye bye !!!             \n"
 				"\n"
 				"#########################################\n"
-				"\n\n")
+				"\n")
 
 	print(msg)
 
 	return 0
-
 
 
 def header() : 
