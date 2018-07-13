@@ -262,20 +262,6 @@ class GameOfLife(object) :
 		self._update_space()
 		print(self.space)
 
-			if self.__detect_no_lives() : 
-				logging.info(1)
-				return self.round, 1
-			if self.__detect_last_round() : 
-				logging.info(2)
-				return self.round, 2
-			if self.__detect_game_fixed(self.__last_cells) : 
-				logging.info(3)
-				return self.round, 3
-			if self.__detect_game_fixed(self.__2last_cells) : 
-				logging.info(4)
-				return self.round, 4
-			else : 
-				self.__looper()
 
 
 
@@ -294,6 +280,21 @@ class GameOfLife(object) :
 			game()
 
 			self._next()
+
+			if self.__detect_no_lives() : 
+				logging.info(1)
+				return self.round, 1
+			if self.__detect_last_round() : 
+				logging.info(2)
+				return self.round, 2
+			if self.__detect_game_fixed(self.__last_cells) : 
+				logging.info(3)
+				return self.round, 3
+			if self.__detect_game_fixed(self.__2last_cells) : 
+				logging.info(4)
+				return self.round, 4
+			else : 
+				self.__looper()
 
 
 
