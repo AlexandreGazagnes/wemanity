@@ -106,6 +106,40 @@ def check_dim(dim) :
 	return param
 
 
+
+def ask_auto_mode() : 
+	""" """
+	
+	msg =	"\n\n" + \
+			"please choose to enable or disable auto_mode : \n\n" + \
+			"\texpected an 'y' for 'yes' or a 'n' for 'no' \n" + \
+			"\tif auto_mode, iterations will be done automaitcly after a time waiter\n"+\
+			"\tif not you will have to press < Enter > for each iteration  \n" + \
+			"\tpress <Enter> for default value : {}\n".format(AUTO_MODE_DEFAULT) + \
+			"\tpress <Ctrl+Z> to quit \n" + \
+			"\n"
+	
+	os.system("clear")
+
+	options()
+
+	while True : 
+
+		auto_mode = input(msg)
+
+		if not auto_mode : 
+			return AUTO_MODE_DEFAULT
+
+		if auto_mode.lower().strip() == "y" : 
+			return True
+
+		elif auto_mode.lower().strip() == "n" :
+			return False
+
+		else :
+			print("\n\nauto_mode error 'y' or 'n', recieved {}".format(auto_mode))
+
+
 def check_auto_mode(auto_mode) : 
 	""" """
 	
@@ -118,10 +152,6 @@ def check_auto_mode(auto_mode) :
 
 	return param
 
-
-def check_init_cells(init_cells) : 
-	""" """
- 	pass
 
 
 def check_waiter(waiter) : 
@@ -159,6 +189,16 @@ def check_max_round(max_round) :
 	decor_param(param)
 
 	return param
+
+
+
+
+def check_init_cells(init_cells) : 
+	""" """
+ 	pass
+
+
+
 
 
 def decor_param(param) : 
