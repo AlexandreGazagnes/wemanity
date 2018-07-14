@@ -22,9 +22,9 @@ DIM_MIN 			= 5
 DIM_MAX 			= 30
 
 # if  INT --> # numb of cells in the space
-INIT_CELLS_DEFAULT 	= int(0.4 * DIM_DEFAULT**2)
+INIT_CELLS_DEFAULT 	= int(0.5 * 0.75 * DIM_MAX**2)
 INIT_CELLS_MIN 		= 1
-INIT_CELLS_MAX 		= int(DIM_MAX*0.75)
+INIT_CELLS_MAX 		= int(DIM_MAX**2)
 
 # if LIST of Tuples --> defaul location for cels
 # INIT_CELLS = [(3,2), (3,3) ...]
