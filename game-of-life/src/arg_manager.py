@@ -154,6 +154,44 @@ def check_auto_mode(auto_mode) :
 
 
 
+
+def ask_waiter() : 
+	""" """
+
+	msg =	"\n\n" + \
+			"please choose the refresh time value of the game : \n\n" + \
+			"\texpected an {} in seconds with min {} and max {} \n".format(type(WAITER_MAX), WAITER_MIN, WAITER_MAX) + \
+			"\tconsider waiter as the time between two iterations \n" + \
+			"\tpress <Enter> for default value : {}\n".format(WAITER_DEFAULT) + \
+			"\tpress <Ctrl+Z> to quit \n" + \
+			"\n"
+	
+	os.system("clear")
+
+	options()
+
+	while True : 
+
+		waiter = input(msg)
+
+		if not waiter : 
+			return WAITER_DEFAULT
+
+		try : 
+			waiter = float(waiter)
+			if waiter > WAITER_MAX : 
+				print("\n\refresh value error, expected max {}, recieved {}".format(WAITER_MAX, waiter))
+			elif waiter < WAITER_MIN : 
+				print("\n\refresh value error, expected min {}, recieved {}".format(WAITER_MIN, waiter))
+			else : 
+				return waiter 
+		except : 
+			print("\n\refresh type error, expected {}, recieved {}".format(type(WAITER_MAX), type(waiter)))
+
+
+
+
+
 def check_waiter(waiter) : 
 	""" """
 	
