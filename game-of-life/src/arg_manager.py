@@ -88,6 +88,7 @@ def check_waiter(waiter) :
 
 	return decor_param(param)
 
+
 def check_max_round(max_round) : 
 	""" """
 
@@ -102,12 +103,14 @@ def check_max_round(max_round) :
 		param = False
 		print("ValueError(max_round value error, expected min {}, recieved {}".format(MAX_ROUND_MIN, max_round))
 
-	return decor_param(param)
+	decor_param(param)
+	
+	return param
 
 
 def decor_param(param) : 
+	""" """
+
 	if not param : 
 		print("we will ask you to choose this parametre manualy :(")
-		return False
-	return True
 
