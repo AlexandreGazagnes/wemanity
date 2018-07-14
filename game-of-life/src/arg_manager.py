@@ -88,6 +88,23 @@ def check_waiter(waiter) :
 
 	return decor_param(param)
 
+def check_max_round(max_round) : 
+	""" """
+
+	param = True
+	if not isinstance(max_round, int) : 
+		param = False
+		print("TypeError(max_round type error, expected <class 'int'>, recieved {}".format(type(max_round)))
+	if max_round > MAX_ROUND_MAX :
+		param = False
+		print("raise ValueError(max_round value error, expected max {}, recieved {}".format(MAX_ROUND_MAX, max_round))
+	if max_round < MAX_ROUND_MIN :
+		param = False
+		print("ValueError(max_round value error, expected min {}, recieved {}".format(MAX_ROUND_MIN, max_round))
+
+	return decor_param(param)
+
+
 def decor_param(param) : 
 	if not param : 
 		print("we will ask you to choose this parametre manualy :(")
