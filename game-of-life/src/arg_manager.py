@@ -44,3 +44,26 @@ def default_args() :
 	check_options(options) 
 
 	return options
+
+
+
+
+def check_dim(dim) : 
+	""" """
+
+	param = True
+	if not isinstance(dim, int) : 
+		param = False
+		print("TypeError(dim type error, expected <class 'int'>, recieved {}".format(type(dim)))
+	
+	if dim > DIM_MAX :
+		param = False
+		print("ValueError(dim value error, expected max {}, recieved {}".format(DIM_MAX, dim))
+
+	if dim < DIM_MIN :
+		param= False
+		print("ValueError(dim value error, expected min {}, recieved {}".format(DIM_MIN, dim))
+	if not param : 
+		print("we will ask you to choose this parametre manualy :(")
+		return False
+	return True
