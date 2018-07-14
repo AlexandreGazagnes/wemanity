@@ -24,25 +24,23 @@ from src.display import options
 
 # functions
 
-def arg_manager() : 
-	"""basic args manager using argpare
+def default_args() : 
+	"""return default argumennts
+
 	positional args  	: - 
 	optional args 		: -	
 	return 				: dict object with key/values of arguments 
 	raises				: - 
 	"""
 
-	logging.info("arg_manager() called")
+	logging.info("default_args() called")
 
-	args = sys.argv[1:]
+	options = dict(		dim 		= DIM_DEFAULT, 
+						init_cells 	= INIT_CELLS_DEFAULT, 
+						auto_mode 	= AUTO_MODE, 
+						waiter 		= WAITER_DEFAULT,
+						max_round 	= MAX_ROUND_DEFAULT)
 
-	# manage args from cli or display fancy user interface to ask user
-	# default return something before writting full funct
+	check_options(options) 
 
-	d = dict(	dim=16, init_cells=40, 
-				auto_mode = True, 
-				waiter=1,
-				max_round=40)
-	
-	return d
-
+	return options
