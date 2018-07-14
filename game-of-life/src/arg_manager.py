@@ -63,7 +63,34 @@ def check_dim(dim) :
 	if dim < DIM_MIN :
 		param= False
 		print("ValueError(dim value error, expected min {}, recieved {}".format(DIM_MIN, dim))
+
+	return decor_param(param)
+
+
+
+def check_init_cells(init_cells) : 
+	""" """
+ 	pass
+
+
+def check_waiter(waiter) : 
+	""" """
+	
+	param=True
+	if not ((isinstance(waiter, int)) or (isinstance(waiter, float)) ): 
+		print("TypeError(waiter type error, expected <class 'int' / 'float'>, recieved {}".format(type(waiter)))
+	if waiter > WAITER_MAX :
+		param=False		
+		print("ValueError(waiter value error, expected max {}, recieved {}".format(WAITER_MAX, waiter))
+	if waiter < WAITER_MIN :
+		param = False
+		print("ValueError(waiter value error, expected min {}, recieved {}".format(WAITER_MIN, waiter))
+
+	return decor_param(param)
+
+def decor_param(param) : 
 	if not param : 
 		print("we will ask you to choose this parametre manualy :(")
 		return False
 	return True
+
