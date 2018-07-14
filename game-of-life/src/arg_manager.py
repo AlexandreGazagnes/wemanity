@@ -268,6 +268,48 @@ def check_max_round(max_round) :
 
 
 
+
+
+def ask_init_cells(dim) : 
+	""" """
+
+	init_cells_max = int(0.75 * dim **2) 
+
+	init_cells_default = int(0.4 * init_cells_max)
+
+	msg =	"\n\n" + \
+			"please choose the number of cells of the init state of the game: \n\n" + \
+			"\texpected an {} with min {} and max {} \n".format(type(INIT_CELLS_DEFAULT), INIT_CELLS_MIN, init_cells_max) + \
+			"\teg init_cells = 10 will build 10 cells randomly located at the begining of the game \n" + \
+			"\tpress <Enter> for default value : {}\n".format(init_cells_default) + \
+			"\tpress <Ctrl+Z> to quit \n" + \
+			"\n"
+	
+	os.system("clear")
+
+	options()
+
+	while True : 
+
+		init_cells = input(msg)
+
+		if  not init_cells : 
+			return init_cells_default
+
+		try : 
+			init_cells = int(init_cells)
+			if init_cells > init_cells_max : 
+				print("\n\ndim value error, expected max {}, recieved {}".format(init_cells_max, init_cells))
+			elif init_cells < INIT_CELLS_MIN : 
+				print("\n\ndim value error, expected min {}, recieved {}".format(INIT_CELLS_MIN, init_cells))
+			else : 
+				return init_cells 
+		except : 
+			print("\n\ndim type error, expected {}, recieved {}".format(type(init_cells_max),type(init_cells)))
+
+
+
+
 def check_init_cells(init_cells) : 
 	""" """
  	pass
