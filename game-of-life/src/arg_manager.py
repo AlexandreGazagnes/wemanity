@@ -210,6 +210,43 @@ def check_waiter(waiter) :
 	return param
 
 
+
+
+def ask_max_round() : 
+	""" """
+	msg =	"\n\n" + \
+			"please choose the max round number of the game : \n\n" + \
+			"\texpected an {} with min {} and max {} \n".format(type(MAX_ROUND_MAX), MAX_ROUND_MIN, MAX_ROUND_MAX) + \
+			"\tconsider max_round as a sanity check to avoid infinite loop or computational overholding\n" + \
+			"\tpress <Enter> for default value : {}\n".format(MAX_ROUND_DEFAULT) + \
+			"\tpress <Ctrl+Z> to quit \n" + \
+			"\n"
+	
+	os.system("clear")
+
+	options()
+
+	while True : 
+
+		max_round = input(msg)
+
+		if not max_round : 
+			return MAX_ROUND_DEFAULT
+
+		try : 
+			max_round = int(max_round)
+			if max_round > MAX_ROUND_MAX : 
+				print("\n\nmax_round value error, expected max {}, recieved {}".format(MAX_ROUND_MAX, max_round))
+			elif max_round < MAX_ROUND_MIN : 
+				print("\n\nmax_round value error, expected min {}, recieved {}".format(MAX_ROUND_MIN, max_round))
+			else : 
+				return max_round 
+		except : 
+			print("\n\nmax_round type error, expected {}, recieved {}".format(type(MAX_ROUND_MAX), type(max_round)))
+
+
+
+
 def check_max_round(max_round) : 
 	""" """
 
