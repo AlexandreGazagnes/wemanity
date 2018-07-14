@@ -64,8 +64,22 @@ def check_dim(dim) :
 		param= False
 		print("ValueError(dim value error, expected min {}, recieved {}".format(DIM_MIN, dim))
 
-	return decor_param(param)
+	decor_param(param)
 
+	return param
+
+
+def check_auto_mode(auto_mode) : 
+	""" """
+	
+	param = True 
+	if not isinstance(auto_mode, bool) : 
+		param = False
+		print("TypeError(auto_mode type error, expected <class 'bool'>, recieved {}".format(type(auto_mode)))
+
+	decor_param(param)
+
+	return param
 
 
 def check_init_cells(init_cells) : 
@@ -86,7 +100,9 @@ def check_waiter(waiter) :
 		param = False
 		print("ValueError(waiter value error, expected min {}, recieved {}".format(WAITER_MIN, waiter))
 
-	return decor_param(param)
+	decor_param(param)
+
+	return param
 
 
 def check_max_round(max_round) : 
@@ -104,7 +120,7 @@ def check_max_round(max_round) :
 		print("ValueError(max_round value error, expected min {}, recieved {}".format(MAX_ROUND_MIN, max_round))
 
 	decor_param(param)
-	
+
 	return param
 
 
