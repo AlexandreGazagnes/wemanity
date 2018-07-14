@@ -46,6 +46,43 @@ def default_args() :
 	return options
 
 
+##############################################
+##############################################
+##############################################
+
+
+def ask_dim() : 
+	""" """
+	msg =	"\n\n" + \
+			"please choose the dimension of games's space : \n\n" + \
+			"\texpected an {} with min {} and max {} \n".format(type(DIM_MAX), DIM_MIN, DIM_MAX) + \
+			"\teg dim = 3 will build a 3 * 3 space with 9 cases \n" + \
+			"\tpress <Enter> for default value : {}\n".format(DIM_DEFAULT) + \
+			"\tpress <Ctrl+Z> to quit \n" + \
+			"\n"
+	
+	os.system("clear")
+
+	options()
+
+	while True : 
+
+		dim = input(msg)
+
+		if not dim : 
+			return DIM_DEFAULT
+
+		try : 
+			dim = int(dim)
+			if dim > DIM_MAX : 
+				print("\n\ndim value error, expected max {}, recieved {}".format(DIM_MAX, dim))
+			elif dim < DIM_MIN : 
+				print("\n\ndim value error, expected min {}, recieved {}".format(DIM_MIN, dim))
+			else : 
+				return dim 
+		except : 
+			print("\n\ndim type error, expected {}, recieved {}".format(type(DIM_MAX),type(dim)))
+
 
 
 def check_dim(dim) : 
