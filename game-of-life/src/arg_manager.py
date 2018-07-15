@@ -88,6 +88,18 @@ def default_args() :
 	return options
 
 
+def check_options(options) : 
+	""" """
+
+	check_dim(options["dim"])
+	check_waiter(options["waiter"])
+	check_init_cells(options["init_cells"])
+	check_auto_mode(options["auto_mode"])
+	check_max_round(options["max_round"])
+
+
+
+
 
 def ask_dim() : 
 	""" """
