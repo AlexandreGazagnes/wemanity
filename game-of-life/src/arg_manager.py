@@ -66,8 +66,6 @@ def arg_manager(options_dict=None) :
 				options["dim"] = ask_dim()
 
 
-
-
 def default_args() : 
 	"""return default argumennts
 
@@ -88,6 +86,8 @@ def default_args() :
 	check_options(options) 
 
 	return options
+
+
 
 
 ##############################################
