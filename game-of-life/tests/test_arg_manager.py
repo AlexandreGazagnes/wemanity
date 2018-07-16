@@ -66,13 +66,12 @@ def test_valid_args() :
 	assert d["auto_mode"] == True
 
 
-
-# def test_invalid_args_dim() : 
-# 	assert False == check_dim(-1)
-# 	assert False == check_dim(1000)
-# 	assert False == check_dim("aaa")
-# 	assert False == check_dim(list())
-# 	assert False == check_dim(True)
+def test_invalid_args_dim() : 
+	assert False == check_dim(-1)
+	assert False == check_dim(1000)
+	assert False == check_dim("aaa")
+	assert False == check_dim(list())
+	assert False == check_dim(True)
 
 # def test_valid_args_dim() : 
 # 	assert True == check_dim(12)
