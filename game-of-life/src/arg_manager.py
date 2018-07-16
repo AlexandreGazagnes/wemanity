@@ -22,6 +22,12 @@ from src.consts import *
 from src.display import *
 
 
+# logging
+
+l = logging.INFO
+logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
+
+
 # functions
 
 def arg_manager(options_dict=None) : 
@@ -116,7 +122,7 @@ def default_args() :
 
 	options = dict(		dim 		= DIM_DEFAULT, 
 						init_cells 	= INIT_CELLS_DEFAULT, 
-						auto_mode 	= AUTO_MODE, 
+						auto_mode 	= AUTO_MODE_DEFAULT,
 						waiter 		= WAITER_DEFAULT,
 						max_round 	= MAX_ROUND_DEFAULT)
 
@@ -128,11 +134,13 @@ def default_args() :
 def check_options(options) : 
 	""" """
 
+	logging.info(options)
+
 	check_dim(options["dim"])
 	check_waiter(options["waiter"])
-	check_init_cells(options["init_cells"])
 	check_auto_mode(options["auto_mode"])
 	check_max_round(options["max_round"])
+	check_init_cells(options["init_cells"], options["dim"])
 
 
 def ask_dim() : 
@@ -391,7 +399,6 @@ def ask_init_cells(dim) :
 
 
 
-
 def check_init_cells(init_cells, dim) : 
 	""" """
 
@@ -404,10 +411,10 @@ def check_init_cells(init_cells, dim) :
 
 
 
-
 def decor_param(param) : 
 	""" """
 
 	if not param : 
-		print("we will ask you to choose this parametre manualy :(")
+		print("we will ask you to choose this parametre manualy :(\n")
+		# input("press <Enter> to continue ...\n")
 
