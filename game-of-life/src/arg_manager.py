@@ -33,37 +33,50 @@ def arg_manager(options_dict=None) :
 	raises				: - 
 	"""
 
-	if not options_dict :
+	if not isinstance(options_dict, dict) : 
 
-		dim  			= ask_dim()
-		auto_mode 		= ask_auto_mode()
-		
-		if auto_mode : 
-			waiter 		= ask_waiter()
-			max_round 	= ask_max_round()
+		options_dict = dict()
+
+
+	options = dict()
+
+	if "dim" in options_dict.keys() : 
+		if check_dim() : 
+			options["dim"] = options_dict["dim"]
 		else : 
-			waiter 		= WAITER_DEFAULT
-			max_round 	= MAX_ROUND_MAX
+			options["dim"] = ask_dim()
 
-		init_cells 		= ask_init_cells(dim)
+	if "auto_mode" in options_dict.keys() : 
+		if check_auto_mode() : 
+			options["auto_mode"] = options_dict["auto_mode"]
+		else : 
+			options["auto_mode"] = ask_auto_mode()
 
-		options_dict 		= dict(	dim 		= dim, 
-								init_cells 	= init_cells, 
-								auto_mode 	= auto_mode, 
-								waiter 		= waiter,
-								max_round 	= max_round)
-
-		return options
-
-	else : 
-
-		options = dict()
-
-		if "dim" in options_dict.keys() : 
-			if check_dim() : 
-				options["dim"] = options_dict["dim"]
+	if options["auto_mode"] : 
+		if "waiter" in options_dict.keys() : 
+			if check_waiter() : 
+				options["waiter"] = options_dict["waiter"]
 			else : 
-				options["dim"] = ask_dim()
+				options["waiter"] = ask_waiter()
+
+		if "max_round" in options_dict.keys() : 
+			if check_max_round() : 
+				options["max_round"] = options_dict["max_round"]
+			else : 
+				options["max_round"] = ask_max_round()
+	else : 
+		options["waiter"]		= WAITER_DEFAULT
+		options["max_round"] 	= MAX_ROUND_MAX
+
+
+	if "init_cells" in options_dict.keys() : 
+		if check_init_cells() : 
+			options["init_cells"] = options_dict["init_cells"]
+		else : 
+			options["init_cells"] = ask_init_cells()
+
+	return options
+
 
 
 
@@ -319,8 +332,6 @@ def check_max_round(max_round) :
 	decor_param(param)
 
 	return param
-
-
 
 
 

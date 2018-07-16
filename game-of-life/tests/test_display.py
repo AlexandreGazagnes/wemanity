@@ -35,15 +35,17 @@ from src.display import *
 
 # functions
 
-def test_intro() : 
+def test_intro(monkeypatch) : 
 	""" """
-	
+
+	monkeypatch.setattr('builtins.input', lambda x: "")
 	intro()
 
 
-def test_close() : 
+def test_close(monkeypatch) : 
 	""" """
 
+	monkeypatch.setattr('builtins.input', lambda x: "")
 	close()
 
 
@@ -77,21 +79,24 @@ def test_end() :
 	end()
 
 
-def test_end_no_lives() : 
+def test_end_no_lives(monkeypatch) : 
 	""" """
 
+	monkeypatch.setattr('builtins.input', lambda x: "")
 	end_no_lives() 
 
 
-def test_end_last_round():
+def test_end_last_round(monkeypatch):
 	""" """
 
+	monkeypatch.setattr('builtins.input', lambda x: "")
 	end_last_round()
 
 
-def test_end_game_fixed() : 
+def test_end_game_fixed(monkeypatch): 
 	""" """
 
+	monkeypatch.setattr('builtins.input', lambda x: "")
 	end_game_fixed()
 
 
