@@ -26,7 +26,7 @@ INIT_CELLS_DEFAULT 	= int(0.5 * 0.75 * DIM_MAX**2)
 INIT_CELLS_MIN 		= 1
 INIT_CELLS_MAX 		= int(DIM_MAX**2)
 
-# if LIST of Tuples --> defaul location for cels
+# if LIST of Tuples --> defaul location for cells
 # INIT_CELLS = [(3,2), (3,3) ...]
 
 # auto mode eg loop without user input 

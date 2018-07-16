@@ -19,7 +19,7 @@ see various docstrings bellow for more information
 
 import os, sys, argparse, logging
 from src.consts import *
-from src.display import options
+from src.display import *
 
 
 # functions
@@ -33,7 +33,7 @@ def arg_manager(options_dict=None) :
 	raises				: - 
 	"""
 
-	if not options_dict 
+	if not options_dict :
 
 		dim  			= ask_dim()
 		auto_mode 		= ask_auto_mode()
@@ -64,6 +64,14 @@ def arg_manager(options_dict=None) :
 				options["dim"] = options_dict["dim"]
 			else : 
 				options["dim"] = ask_dim()
+
+
+
+def arg_builder() : 
+	""" """
+
+	pass
+
 
 
 def default_args() : 
@@ -359,7 +367,8 @@ def ask_init_cells(dim) :
 
 def check_init_cells(init_cells) : 
 	""" """
- 	pass
+
+	pass
 
 
 

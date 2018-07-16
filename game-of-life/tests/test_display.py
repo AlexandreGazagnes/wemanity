@@ -33,8 +33,6 @@ from src.display import *
 
 
 
-
-
 # functions
 
 def test_intro() : 
@@ -95,6 +93,5 @@ def test_end_game_fixed() :
 	""" """
 
 	end_game_fixed()
-
 
 
