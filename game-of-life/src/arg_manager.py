@@ -101,12 +101,10 @@ def arg_manager(options_dict=None) :
 
 
 
-
 def arg_builder() : 
 	""" """
 
 	pass
-
 
 
 def default_args() : 
@@ -176,7 +174,6 @@ def ask_dim() :
 			print("\n\ndim type error, expected {}, recieved {}".format(type(DIM_MAX),type(dim)))
 
 
-
 def check_dim(dim) : 
 	""" """
 
@@ -196,7 +193,6 @@ def check_dim(dim) :
 	decor_param(param)
 
 	return param
-
 
 
 def ask_auto_mode() : 
@@ -245,8 +241,6 @@ def check_auto_mode(auto_mode) :
 	return param
 
 
-
-
 def ask_waiter() : 
 	""" """
 
@@ -281,9 +275,6 @@ def ask_waiter() :
 			print("\n\refresh type error, expected {}, recieved {}".format(type(WAITER_MAX), type(waiter)))
 
 
-
-
-
 def check_waiter(waiter) : 
 	""" """
 	
@@ -300,8 +291,6 @@ def check_waiter(waiter) :
 	decor_param(param)
 
 	return param
-
-
 
 
 def ask_max_round() : 
@@ -337,8 +326,6 @@ def ask_max_round() :
 			print("\n\nmax_round type error, expected {}, recieved {}".format(type(MAX_ROUND_MAX), type(max_round)))
 
 
-
-
 def check_max_round(max_round) : 
 	""" """
 
@@ -356,8 +343,6 @@ def check_max_round(max_round) :
 	decor_param(param)
 
 	return param
-
-
 
 
 def ask_init_cells(dim) : 
@@ -398,7 +383,6 @@ def ask_init_cells(dim) :
 			print("\n\ndim type error, expected {}, recieved {}".format(type(init_cells_max),type(init_cells)))
 
 
-
 def check_init_cells(init_cells, dim) : 
 	""" """
 
@@ -407,8 +391,6 @@ def check_init_cells(init_cells, dim) :
 	init_cells_default = int(0.4 * init_cells_max)
 
 	pass
-
-
 
 
 def decor_param(param) : 
