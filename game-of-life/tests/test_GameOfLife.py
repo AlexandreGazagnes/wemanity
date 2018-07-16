@@ -77,19 +77,19 @@ def test_GOL_block(monkeypatch) :
 	assert (0, 4, 3) == game.run() 
 
 
-# def test_GOL_Beehive() : 
-# 	""" """
 
-# 	monkeypatch.setattr('builtins.input', lambda x: "")
-# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
-# 	options = dict(	dim=5, 
-# 					auto_mode=True, 
-# 					waiter=0.0, 
-# 					max_round=100, 
-# 					init_cells=init_cells)
-# 	game = GameOfLife(options)
+def test_GOL_Beehive(monkeypatch) : 
+	""" """
 
-# 	assert (0, 4, 3) == game.run() 
+	monkeypatch.setattr('builtins.input', lambda x: "")
+	init_cells = [(2,2), (2,3), (3,3), (3,1), (4,2)]
+	options = dict(	dim=5, 
+					auto_mode=True, 
+					waiter=0.0, 
+					max_round=100, 
+					init_cells=init_cells)
+	game = GameOfLife(options)
+	assert (0, 5, 3) == game.run() 
 
 
 # def test_GOL_Loaf() : 

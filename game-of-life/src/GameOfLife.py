@@ -38,15 +38,16 @@ class GameOfLife(object) :
 
 
 	def __init__(self, options_dict=None) : 
-		"""init method"""
+		""" """
 
-
+		# print intro
 		intro()
 
-		# init attr
-
+		
+		# if options -> check and ask, else arg_manager from scratch
 		options_dict = arg_manager(options_dict)
 
+		# init attr from options
 		[ self.__setattr__(str("_"+key), val) for key, val in options_dict.items() ]
 
 		# build default space fill with 0
@@ -66,16 +67,18 @@ class GameOfLife(object) :
 
 			self._cells = random.sample(self.__list_of_coords, self._init_cells)
 			self._init_cells = self._cells
-			self._last_cells = self._cells
-			self._2last_cells = self._cells
 
-		# else 
+		# else transform user cells in game's cells
 		elif isinstance(self._init_cells, list) : 
 
 			self._cells = self._init_cells
-			self._last_cells = self._cells
-			self._2last_cells = self._cells
 
+		# record each cells of last round and last of last round
+		# to be able to recon 2 same states of the game 
+		self.__last_cells = self._cells
+		self.__2last_cells = self._cells
+
+		# incorporate list of cells to the game represntation
 		self._update_space()
 
 
@@ -111,22 +114,26 @@ class GameOfLife(object) :
 	def cells_nb(self):
 		return len(self._cells)
 
-	@property
-	def last_cells(self):
-		return self._last_cells
+	# @property
+	# def last_cells(self):
+	# 	return self.__last_cells
 
-	@property
-	def last_2cells(self):
-		return self._2last_cells
+	# @property
+	# def last_2cells(self):
+	# 	return self.__2last_cells
 	
 
 	@property	
 	def space(self):
+		"""this is the UI game representation """
 
 		txt = "\n"*4
 
+		# use pandas.to string, but without index and columns name
 		s 	= self._space.to_string(index=False, header=False)
+		# replace 0 and 1 with readable values
 		s 	= s.replace("0", self.__white_space).replace("1", self.__cell)
+		# add a frame around the sapce to see it 
 		s 	= s.replace("\n", "|\n|")
 		s 	+="|\n" 
 		s 	= "\n|"+s
@@ -134,9 +141,13 @@ class GameOfLife(object) :
 
 		txt += 	s
 		txt +=	"\n"
+
+		# add game variables 
 		txt +=	"round       =  {}\n".format(self.round)
 		txt +=	"cells       =  {}\n".format(self.cells_nb)
 		txt += 	"\n" *2
+
+		# add game constants
 		txt += 	"dim         =  {}\n".format(self.dim)
 		txt += 	"max_round   =  {}\n".format(self.max_round)
 		txt += 	"init_cells  =  {}\n".format(self.init_cells_nb)
@@ -148,26 +159,31 @@ class GameOfLife(object) :
 		return self.space
 
 
-	def __repr__(self) : 
-		return self.space
+	# def __repr__(self) : 
+	# 	return self.space
 
 
 	def neighbours_nb(self, i, j):
+		"""for the cell at coord (i,j) give the num of living neighbours (min 0, max 8)"""
+
 		return self.__count_neighbours(i,j)
 
 
 	def neighbours_loc(self, i,j) : 
+		"""for the cell at coord (i,j) give the coords (k,l) of living neighbours """
+
 		return self.__give_neighbours_coords(i,j)
 
 
 	def __build_default_space(self) : 
+		"""private method : build a space of self.dim ** 2 cells, will all defualt values ie 0/dead"""
 
 		i = np.arange(self.dim)
 		return(pd.DataFrame(0, index=i , columns=i))
 
 
 	def _update_space(self) : 
-		"""update space regarding cells coords"""
+		"""method update incorporate cells from self._cells (list of coord of liviving cells in game space represenation"""
 
 		s = "\n" + str(self._space) ; s = s.replace("0", " ")
 
@@ -186,7 +202,10 @@ class GameOfLife(object) :
 
 
 	def _update_cells(self) : 	
-		"""for each round update wich cell live or die"""
+		"""fmethod update to decide, regarding the neighbourhood, if a cell change its statse (living/dead) or 
+		stay alive/dead
+		rules : if alive with 2/3 neighbours alive : keep living, else is killed 
+		        if dead with 3 neighbours : wake up and live else keep deading""" 
 
 		add_cells 	= list()
 		del_cells 	= list()
@@ -231,9 +250,9 @@ class GameOfLife(object) :
 					"press <Crlt + Z> to quit \n")
 
 		self._round+=1
-		self._last_cells = self._cells
+		self.__last_cells = self._cells
 		if self._round %2 : 
-			self._2last_cells = self._cells
+			self.__2last_cells = self._cells
 
 
 
@@ -295,10 +314,10 @@ class GameOfLife(object) :
 			if self.__detect_last_round() : 
 				logging.info(2)
 				return self.round, self.cells_nb, 2
-			if self.__detect_game_fixed(self.last_cells) : 
+			if self.__detect_game_fixed(self.__last_cells) : 
 				logging.info(3)
 				return self.round, self.cells_nb, 3
-			if self.__detect_game_fixed(self.last_2cells) : 
+			if self.__detect_game_fixed(self.__2last_cells) : 
 				logging.info(4)
 				return self.round, self.cells_nb, 4
 			else : 
