@@ -24,7 +24,7 @@ from src.display import *
 
 # logging
 
-l = logging.INFO
+l = logging.WARNING
 logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 
@@ -386,7 +386,10 @@ def ask_init_cells(dim) :
 			else : 
 				return init_cells 
 		except : 
-			print("\n\ndim type error, expected {}, recieved {}".format(type(init_cells_max),type(init_cells)))
+			if isinstance(init_cells, list) : 
+				return init_cells
+			else : 
+				print("\n\ndim type error, expected {}, recieved {}".format(type(init_cells_max),type(init_cells)))
 
 
 def check_init_cells(init_cells, dim) : 
@@ -396,15 +399,21 @@ def check_init_cells(init_cells, dim) :
 
 
 	param = True
+
+	if isinstance(init_cells, list) : 
+		return True
+
 	if not isinstance(init_cells, int) : 
 		param = False
 		print("TypeError(init_cells type error, expected <class 'int'>, recieved {}".format(type(init_cells)))
-	if init_cells > init_cells_max :
-		param = False
-		print("raise ValueError(init_cells value error, expected max {}, recieved {}".format(init_cells_max, init_cells))
-	if init_cells < INIT_CELLS_MIN :
-		param = False
-		print("ValueError(init_cells value error, expected min {}, recieved {}".format(INIT_CELLS_MIN, init_cells))
+	
+	else : 
+		if init_cells > init_cells_max :
+			param = False
+			print("raise ValueError(init_cells value error, expected max {}, recieved {}".format(init_cells_max, init_cells))
+		if init_cells < INIT_CELLS_MIN :
+			param = False
+			print("ValueError(init_cells value error, expected min {}, recieved {}".format(INIT_CELLS_MIN, init_cells))
 
 	decor_param(param)
 

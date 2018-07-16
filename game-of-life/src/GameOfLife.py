@@ -66,13 +66,23 @@ class GameOfLife(object) :
 
 			self._cells = random.sample(self.__list_of_coords, self._init_cells)
 			self._init_cells = self._cells
-			self.__last_cells = self._cells
-			self.__2last_cells = self._cells
+
+			self._last_cells = self._cells
+
+
+			self._2last_cells = self._cells
+
 
 		# else 
 		elif isinstance(self._init_cells, list) : 
 
 			self._cells = self._init_cells
+
+			self._last_cells = self._cells
+
+
+			self._2last_cells = self._cells
+
 
 		else :
 			raise ValueError("invalid init state")
@@ -111,6 +121,15 @@ class GameOfLife(object) :
 	@property	
 	def cells_nb(self):
 		return len(self._cells)
+
+	@property
+	def last_cells(self):
+		return self._last_cells
+
+	@property
+	def last_2cells(self):
+		return self._2last_cells
+	
 
 
 	@property	
@@ -221,9 +240,9 @@ class GameOfLife(object) :
 					"press <Crlt + Z> to quit \n")
 
 		self._round+=1
-		self.__last_cells = self._cells
+		self._last_cells = self._cells
 		if self._round %2 : 
-			self.__2last_cells = self._cells
+			self._2last_cells = self._cells
 
 
 
@@ -283,16 +302,16 @@ class GameOfLife(object) :
 
 			if self.__detect_no_lives() : 
 				logging.info(1)
-				return self.round, 1
+				return self.round, self.cells_nb, 1
 			if self.__detect_last_round() : 
 				logging.info(2)
-				return self.round, 2
-			if self.__detect_game_fixed(self.__last_cells) : 
+				return self.round, self.cells_nb, 2
+			if self.__detect_game_fixed(self.last_cells) : 
 				logging.info(3)
-				return self.round, 3
-			if self.__detect_game_fixed(self.__2last_cells) : 
+				return self.round, self.cells_nb, 3
+			if self.__detect_game_fixed(self.last_2cells) : 
 				logging.info(4)
-				return self.round, 4
+				return self.round, self.cells_nb, 4
 			else : 
 				self.__looper()
 
@@ -321,7 +340,8 @@ class GameOfLife(object) :
 			end_game_fixed()
 			return True
 		else : 
-			same = False
+			return False
+	
 
 
 

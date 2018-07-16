@@ -128,6 +128,8 @@ def test_invalid_args_max_round() :
 
 
 def test_valid_args_max_round() : 
+	""" """
+	
 	assert True == check_max_round(10)
 	assert True == check_max_round(300)
 	assert True == check_max_round(500)

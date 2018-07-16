@@ -32,8 +32,8 @@ INIT_CELLS_MAX 		= int(DIM_MAX**2)
 # auto mode eg loop without user input 
 AUTO_MODE_DEFAULT	= True
 
-WAITER_DEFAULT 		= 0.2
-WAITER_MIN			= 0.1
+WAITER_DEFAULT 		= 0.3
+WAITER_MIN			= 0.0
 WAITER_MAX 			= 3
 
 # posible stop to avoid infinite loop

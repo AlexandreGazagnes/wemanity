@@ -20,7 +20,7 @@ from src import *
 
 # logging	
 
-l = logging.INFO
+l = logging.WARNING
 logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 
@@ -29,11 +29,6 @@ logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 def main() : 
 
-
-	intro()
-	input()
-	
-	options = arg_manager()
 
 	gol = GameOfLife(options)
 	gol.run()
