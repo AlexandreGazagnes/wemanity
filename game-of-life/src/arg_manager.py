@@ -90,7 +90,7 @@ def arg_manager(options_dict=None) :
 
 
 	if "init_cells" in options_dict.keys() : 
-		if check_init_cells(options_dict["dim"]) : 
+		if check_init_cells(options_dict["init_cells"], options["dim"]) : 
 			options["init_cells"] = options_dict["init_cells"]
 		else : 
 			options["init_cells"] = ask_init_cells(options["dim"])
@@ -388,9 +388,21 @@ def check_init_cells(init_cells, dim) :
 
 	init_cells_max = int(0.75 * dim **2) 
 
-	init_cells_default = int(0.4 * init_cells_max)
 
-	pass
+	param = True
+	if not isinstance(init_cells, int) : 
+		param = False
+		print("TypeError(init_cells type error, expected <class 'int'>, recieved {}".format(type(init_cells)))
+	if init_cells > init_cells_max :
+		param = False
+		print("raise ValueError(init_cells value error, expected max {}, recieved {}".format(init_cells_max, init_cells))
+	if init_cells < INIT_CELLS_MIN :
+		param = False
+		print("ValueError(init_cells value error, expected min {}, recieved {}".format(INIT_CELLS_MIN, init_cells))
+
+	decor_param(param)
+
+	return param
 
 
 def decor_param(param) : 
