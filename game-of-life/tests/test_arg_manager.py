@@ -33,7 +33,6 @@ logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 # functions
 
-
 def test_default_args() : 
 	""" """
 
@@ -55,6 +54,7 @@ def test_init_args(monkeypatch) :
 
 def test_valid_args() : 
 	""" """ 
+	
 	options = dict(dim=10, auto_mode=True, waiter=0.3, max_round=100, init_cells=30)
 	
 	d = arg_manager(options)
@@ -67,56 +67,71 @@ def test_valid_args() :
 
 
 def test_invalid_args_dim() : 
+	""" """
+	
 	assert False == check_dim(-1)
 	assert False == check_dim(1000)
 	assert False == check_dim("aaa")
 	assert False == check_dim(list())
 	assert False == check_dim(True)
 
-# def test_valid_args_dim() : 
-# 	assert True == check_dim(12)
-# 	assert True == check_dim(20)
-# 	assert True == check_dim(25)
+
+def test_valid_args_dim() : 
+	""" """
+	
+	assert True == check_dim(12)
+	assert True == check_dim(20)
+	assert True == check_dim(25)
 
 
-# def test_invalid_args_auto_mode() : 
-# 	assert False == check_auto_mode(1000)
-# 	assert False == check_auto_mode(-1)
-# 	assert False == check_auto_mode("aaa")
-# 	assert False == check_auto_mode(list())
+def test_invalid_args_auto_mode() : 
+	""" """
+
+	assert False == check_auto_mode(1000)
+	assert False == check_auto_mode(-1)
+	assert False == check_auto_mode("aaa")
+	assert False == check_auto_mode(list())
 
 
-# def test_valid_args_auto_mode() : 
-# 	assert True == check_auto_mode(True)
-# 	assert True == check_auto_mode(False)
+def test_valid_args_auto_mode() : 
+	""" """
+
+	assert True == check_auto_mode(True)
+	assert True == check_auto_mode(False)
 
 
-# def test_invalid_args_waiter() : 
-# 	assert False == check_waiter(-1)
-# 	assert False == check_waiter("aa")
-# 	assert False == check_waiter(10)
-# 	assert False == check_waiter(True)
+def test_invalid_args_waiter() : 
+	""" """
+
+	assert False == check_waiter(-1)
+	assert False == check_waiter("aa")
+	assert False == check_waiter(10)
+	assert False == check_waiter(False)
 
 
-# def test_valid_args_waiter() : 
-# 	assert True == check_waiter(0.1)
-# 	assert True == check_waiter(1)
-# 	assert True == check_waiter(1.2)
-# 	assert True == check_waiter(2.33333)
+def test_valid_args_waiter() : 
+	""" """
+
+	assert True == check_waiter(0.1)
+	assert True == check_waiter(1)
+	assert True == check_waiter(1.2)
+	assert True == check_waiter(2.33333)
 
 
-# def test_invalid_args_max_round() : 
-# 	assert False == check_max_round(10000)
-# 	assert False == check_max_round(-1)
-# 	assert False == check_max_round("aaa")
-# 	assert False == check_max_round(list())
+def test_invalid_args_max_round() : 
+	""" """
+
+	assert False == check_max_round(10000)
+	assert False == check_max_round(-1)
+	assert False == check_max_round("aaa")
+	assert False == check_max_round(list())
 
 
-# def test_valid_args_max_round() : 
-# 	assert True == check_max_round(10)
-# 	assert True == check_max_round(300)
-# 	assert True == check_max_round(500)
-# 	assert True == check_max_round(1000)
+def test_valid_args_max_round() : 
+	assert True == check_max_round(10)
+	assert True == check_max_round(300)
+	assert True == check_max_round(500)
+	assert True == check_max_round(1000)
 
 
 # def test_invalid_args_init_cells() : 
