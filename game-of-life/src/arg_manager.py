@@ -98,9 +98,6 @@ def check_options(options) :
 	check_max_round(options["max_round"])
 
 
-
-
-
 def ask_dim() : 
 	""" """
 	msg =	"\n\n" + \
