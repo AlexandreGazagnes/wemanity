@@ -38,42 +38,58 @@ def arg_manager(options_dict=None) :
 		options_dict = dict()
 
 
-	options = dict()
+	options = dict(	dim 		= None,
+					auto_mode 	= None,
+					waiter 		= None, 
+					max_round 	= None, 
+					init_cells 	= None, 	)
+
 
 	if "dim" in options_dict.keys() : 
-		if check_dim() : 
+		if check_dim(options_dict["dim"]) : 
 			options["dim"] = options_dict["dim"]
 		else : 
 			options["dim"] = ask_dim()
+	else : 
+		options["dim"] = ask_dim()
 
 	if "auto_mode" in options_dict.keys() : 
-		if check_auto_mode() : 
+		if check_auto_mode(options_dict["auto_mode"]) : 
 			options["auto_mode"] = options_dict["auto_mode"]
 		else : 
 			options["auto_mode"] = ask_auto_mode()
+	else : 
+		options["auto_mode"] = ask_auto_mode()
 
 	if options["auto_mode"] : 
 		if "waiter" in options_dict.keys() : 
-			if check_waiter() : 
+			if check_waiter(options_dict["waiter"]) : 
 				options["waiter"] = options_dict["waiter"]
 			else : 
 				options["waiter"] = ask_waiter()
+		else : 
+			options["waiter"] = ask_waiter()
 
 		if "max_round" in options_dict.keys() : 
-			if check_max_round() : 
+			if check_max_round(options_dict["max_round"]) : 
 				options["max_round"] = options_dict["max_round"]
 			else : 
 				options["max_round"] = ask_max_round()
+		else : 
+			options["max_round"] = ask_max_round()
+
 	else : 
 		options["waiter"]		= WAITER_DEFAULT
 		options["max_round"] 	= MAX_ROUND_MAX
 
 
 	if "init_cells" in options_dict.keys() : 
-		if check_init_cells() : 
+		if check_init_cells(options_dict["dim"]) : 
 			options["init_cells"] = options_dict["init_cells"]
 		else : 
-			options["init_cells"] = ask_init_cells()
+			options["init_cells"] = ask_init_cells(options["dim"])
+	else : 
+		options["init_cells"] = ask_init_cells(options["dim"])
 
 	return options
 
@@ -180,7 +196,7 @@ def ask_auto_mode() :
 	
 	msg =	"\n\n" + \
 			"please choose to enable or disable auto_mode : \n\n" + \
-			"\texpected an 'y' for 'yes' or a 'n' for 'no' \n" + \
+			"\texpected an 'y' for 'yes/True' or a 'n' for 'no/False' \n" + \
 			"\tif auto_mode, iterations will be done automaitcly after a time waiter\n"+\
 			"\tif not you will have to press < Enter > for each iteration  \n" + \
 			"\tpress <Enter> for default value : {}\n".format(AUTO_MODE_DEFAULT) + \
@@ -376,8 +392,12 @@ def ask_init_cells(dim) :
 
 
 
-def check_init_cells(init_cells) : 
+def check_init_cells(init_cells, dim) : 
 	""" """
+
+	init_cells_max = int(0.75 * dim **2) 
+
+	init_cells_default = int(0.4 * init_cells_max)
 
 	pass
 
