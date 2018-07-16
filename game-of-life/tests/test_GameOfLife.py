@@ -64,6 +64,7 @@ def test_run_GOL(monkeypatch) :
 
 def test_GOL_block(monkeypatch) :
 	""" """
+
 	monkeypatch.setattr('builtins.input', lambda x: "")
 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
 	options = dict(	dim=5, 
@@ -78,91 +79,166 @@ def test_GOL_block(monkeypatch) :
 
 # def test_GOL_Beehive() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_Loaf() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_Boat() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_Tub() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_Blinker() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_Toad() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_Beacon() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_config0() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_config1() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_config2() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
+
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
+
+# 	assert (0, 4, 3) == game.run() 
 
 
 # def test_GOL_config3() : 
 # 	""" """
-# 	options = default_args()
-# 	options["init_cells"] = [(0,0), (0,0), ...]
-# 	game = GameOfLife(options)
-# 	assert (iteration, nb_cells, exit_value) == game.run()
 
+# 	monkeypatch.setattr('builtins.input', lambda x: "")
+# 	init_cells = [(1,1), (1,2), (2,1), (2,2)]
+# 	options = dict(	dim=5, 
+# 					auto_mode=True, 
+# 					waiter=0.0, 
+# 					max_round=100, 
+# 					init_cells=init_cells)
+# 	game = GameOfLife(options)
 
+# 	assert (0, 4, 3) == game.run() 
 
 
