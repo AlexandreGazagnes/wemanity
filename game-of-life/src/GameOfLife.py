@@ -66,37 +66,26 @@ class GameOfLife(object) :
 
 			self._cells = random.sample(self.__list_of_coords, self._init_cells)
 			self._init_cells = self._cells
-
 			self._last_cells = self._cells
-
-
 			self._2last_cells = self._cells
-
 
 		# else 
 		elif isinstance(self._init_cells, list) : 
 
 			self._cells = self._init_cells
-
 			self._last_cells = self._cells
-
-
 			self._2last_cells = self._cells
 
-
-		else :
-			raise ValueError("invalid init state")
-
-
-
 		self._update_space()
-
 
 
 	@property
 	def round(self):
 		return self._round
 
+	@property
+	def max_round(self):
+		return self._max_round
 
 	@property
 	def init_cells_loc(self):
@@ -131,7 +120,6 @@ class GameOfLife(object) :
 		return self._2last_cells
 	
 
-
 	@property	
 	def space(self):
 
@@ -144,12 +132,15 @@ class GameOfLife(object) :
 		s 	= "\n|"+s
 		s 	= "---" * self.dim + s + "---" * self.dim +"\n"
 
-		txt += s
-		txt +="\n"
-		txt +="round  = {}\n".format(self.round)
-		txt +="cells  = {}\n".format(self.cells_nb)
-		txt += "\n" * 4
-
+		txt += 	s
+		txt +=	"\n"
+		txt +=	"round       =  {}\n".format(self.round)
+		txt +=	"cells       =  {}\n".format(self.cells_nb)
+		txt += 	"\n" *2
+		txt += 	"dim         =  {}\n".format(self.dim)
+		txt += 	"max_round   =  {}\n".format(self.max_round)
+		txt += 	"init_cells  =  {}\n".format(self.init_cells_nb)
+		
 		return txt
 
 
@@ -280,8 +271,6 @@ class GameOfLife(object) :
 		self._update_cells()
 		self._update_space()
 		print(self.space)
-
-
 
 
 	def run(self) : 
