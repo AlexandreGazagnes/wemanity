@@ -86,9 +86,11 @@ class GameOfLife(object) :
 	def round(self):
 		return self._round
 
+
 	@property
 	def max_round(self):
 		return self._max_round
+
 
 	@property
 	def init_cells_loc(self):
@@ -129,6 +131,7 @@ class GameOfLife(object) :
 
 		txt = "\n"*4
 
+		# game representation / space
 		# use pandas.to string, but without index and columns name
 		s 	= self._space.to_string(index=False, header=False)
 		# replace 0 and 1 with readable values
@@ -139,8 +142,11 @@ class GameOfLife(object) :
 		s 	= "\n|"+s
 		s 	= "---" * self.dim + s + "---" * self.dim +"\n"
 
+		# quit if needed
 		txt += 	s
-		txt +=	"\n"
+		txt +=	"\n"*2
+		print("press <Crlt + Z> to quit")
+		txt +=	"\n"*2
 
 		# add game variables 
 		txt +=	"round       =  {}\n".format(self.round)
@@ -185,20 +191,17 @@ class GameOfLife(object) :
 	def _update_space(self) : 
 		"""method update incorporate cells from self._cells (list of coord of liviving cells in game space represenation"""
 
-		s = "\n" + str(self._space) ; s = s.replace("0", " ")
-
-		
+		# reset an empty space	in a tmp var	
 		new_space = self.__build_default_space()
 
 		logging.info(self._cells)
+
+		# replace 0 with 1 if cell in self._cells list 
 		for i,j in self._cells : 
 			new_space.loc[i,j] = 1 
 
+		update _space
 		self._space = new_space
-
-		s = "\n" + str(self._space) ; s = s.replace("0", " ")
-		logging.info("new _space")
-		logging.info(s)
 
 
 	def _update_cells(self) : 	
@@ -207,53 +210,49 @@ class GameOfLife(object) :
 		rules : if alive with 2/3 neighbours alive : keep living, else is killed 
 		        if dead with 3 neighbours : wake up and live else keep deading""" 
 
+
+		# create 2 empty list of cells one to add and one to dell 
 		add_cells 	= list()
 		del_cells 	= list()
 		
-		for i,j in self.__list_of_coords : 
+		# considering living cells 
+		for i,j in self.__list_of_coords :
+			# count how many neighbours  
 			neighbours = self.__count_neighbours(i,j)
 
+			# if 2 or 3 neighbours --> stay alive 
 			if (i,j) in self._cells : 
 				if (neighbours == 2) or (neighbours == 3) : 
 					pass
+				# if less or more --> die 
 				else :
 					del_cells.append((i,j))
 
+			# considering dead cells  
 			else : 
+				# if 3 neighbours --> wake up and live
 				if neighbours == 3 : 
 					add_cells.append((i,j))
 				else :
+					# else stay dead
 					pass
 
+		# copy _cells in a tmp var
 		new_cells = list(self._cells)
 
 		logging.info({(i,j) : self.neighbours_nb(i,j) for i,j in self._cells})
 
 
-
+		# from living cells : delete cells who die 
+		# use list comprehension
 		for (i,j) in self._cells : 
 			if (i,j) in del_cells : 
 				new_cells.remove((i,j))
 
+		# from list of nex living cells extend the curent list 
 		new_cells.extend(add_cells)
 
 		self._cells = new_cells
-
-
-	def __looper(self) : 
-
-		if self._auto_mode : 
-			time.sleep(self._waiter)
-			print("press <Crlt + Z> to quit")
-		else : 
-			input( "press <Enter> for next iteration"
-					"press <Crlt + Z> to quit \n")
-
-		self._round+=1
-		self.__last_cells = self._cells
-		if self._round %2 : 
-			self.__2last_cells = self._cells
-
 
 
 	def __count_neighbours(self, i,j) : 
@@ -285,29 +284,95 @@ class GameOfLife(object) :
 		return autorized
 
 
-	def _next(self) : 				
+	def _next(self) :
+		""" update game's state and show game repr"""			
 
 		self._update_cells()
 		self._update_space()
 		print(self.space)
 
 
-	def run(self) : 
-		"""launch a game session"""
+	def __looper(self) : 
+		"""find here the looper method wich is used to deal with auto_mode True/Flase
+		record last_cells and 2_last_cells to track fixed structures
+		and increment round
+		"""
 
+		# if auto_mode just sleep a certain time 
+		if self._auto_mode : 
+			time.sleep(self._waiter)
+
+		# else ask to user input before continuing
+		else : 
+			input( "press <Enter> for next iteration"
+					"press <Crlt + Z> to quit \n")
+
+		# incremenent round
+		self._round+=1
+		# record last list of cells for dectecting fixed game (periodicity =1)
+		self.__last_cells = self._cells
+		# record lastof last  list of cells for dectecting fixed game (periodicity =2)		
+		if self._round %2 : 
+			self.__2last_cells = self._cells
+
+
+	def __detect_no_lives(self) : 
+		"""if cells == 0 stop the game"""
+
+		if not self._cells  : 
+			end_no_lives()
+			return True
+
+
+	def __detect_last_round(self) : 
+		"""if max_round stop the game"""
+
+		if self._round == self._max_round : 
+			end_last_round()
+			return True
+
+
+	def __detect_game_fixed(self, arg) : 
+		""" eval if game fixed with last_round"""
+
+		if len(arg) == len(self._cells) : 
+			for i in  arg : 
+				if i not in self._cells : 
+					return False
+			end_game_fixed()
+			return True
+		else : 
+			return False
+	
+
+	def run(self) : 
+		"""main method of the game, control strat, loop and exit values of a game
+		"""
+
+		# initial state before starting game
+		# header + game title
 		os.system("clear")
 		game()
+		# game repr
 		print(self.space)
+		# user input 
+		print("press <Enter> to start")
+		input("press <Crlt + Z> to quit\n")	
 
-		input("press < Enter > to continue...\n")	
-
+		# useless????
 		self.__cont = True
+
+		# main loop 
 		while self.__cont : 
+			# header + game title
 			os.system("clear")
 			game()
 
+			# call next to upate game status 
 			self._next()
 
+			# control game state , and return tupple if one end scenario 
+			# is ocuring
 			if self.__detect_no_lives() : 
 				logging.info(1)
 				return self.round, self.cells_nb, 1
@@ -321,35 +386,7 @@ class GameOfLife(object) :
 				logging.info(4)
 				return self.round, self.cells_nb, 4
 			else : 
+				# else just do "loop operartions and go on for an other loop"
 				self.__looper()
-
-
-
-	def __detect_no_lives(self) : 
-			# if cells == 0 stop the game
-
-			if not self._cells  : 
-				end_no_lives()
-				return True
-
-
-	def __detect_last_round(self) : 
-		# if max_round stop the game
-		if self._round == self._max_round : 
-			end_last_round()
-			return True
-
-	def __detect_game_fixed(self, arg) : 
-		# eval if game fixed with last_round
-		if len(arg) == len(self._cells) : 
-			for i in  arg : 
-				if i not in self._cells : 
-					return False
-			end_game_fixed()
-			return True
-		else : 
-			return False
-	
-
 
 
