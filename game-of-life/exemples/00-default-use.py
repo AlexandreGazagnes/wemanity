@@ -42,13 +42,9 @@ or
 
 # From python / ipython / atom / spyder etc etc interpreter : 
 ------------------------------------------------------------------------------
-import manualy : 
 
-from [your-path]/GameOfLife.src.GameOfLife import * 
-from [your-path]/GameOfLife.src.GameOfLife import GameOfLife
-from [your-path]/GameOfLife.src import * 
+# import manualy : 
 from [your-path]/GameOfLife.src import GameOfLife
-
 
 # init game instance :
 game = GameOfLife()
