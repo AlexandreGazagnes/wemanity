@@ -9,8 +9,16 @@ arg_manager.py
 
 """
 find here all arguments manager instructions
-eg arg_manager is the main function, wich will call an argument builder and all arguments user interface ("ask") and checking ("check") functions
-this arg_manager could become a class in the next tags, just to increase code readability
+ie arg_manager is the main function,which  will be called or not manualy by 
+the user and will be (re)called by GameOfLife.__init__()
+
+arg_manager will handle manual UI to input args ("ask") and also auto check ("check")
+all args to validate type, value etc etc
+
+this arg_manager could become a class in the next version, just to increase 
+code readability and to force user's iputs to be submited to a hidden check 
+function
+
 see various docstrings bellow for more information
 """
 
@@ -101,10 +109,10 @@ def arg_manager(options_dict=None) :
 
 
 
-def arg_builder() : 
-	""" """
+# def arg_builder() : 
+# 	""" """
 
-	pass
+# 	pass
 
 
 def default_args() : 
@@ -130,7 +138,13 @@ def default_args() :
 
 
 def check_options(options) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 
 	logging.info(options)
 
@@ -142,7 +156,14 @@ def check_options(options) :
 
 
 def ask_dim() : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
+
 	msg =	"\n\n" + \
 			"please choose the dimension of games's space : \n\n" + \
 			"\texpected an {} with min {} and max {} \n".format(type(DIM_MAX), DIM_MIN, DIM_MAX) + \
@@ -175,7 +196,13 @@ def ask_dim() :
 
 
 def check_dim(dim) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 
 	param = True
 	if not isinstance(dim, int) : 
@@ -197,7 +224,13 @@ def check_dim(dim) :
 
 
 def ask_auto_mode() : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 	
 	msg =	"\n\n" + \
 			"please choose to enable or disable auto_mode : \n\n" + \
@@ -230,7 +263,13 @@ def ask_auto_mode() :
 
 
 def check_auto_mode(auto_mode) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 	
 	param = True 
 	if not isinstance(auto_mode, bool) : 
@@ -243,7 +282,13 @@ def check_auto_mode(auto_mode) :
 
 
 def ask_waiter() : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 
 	msg =	"\n\n" + \
 			"please choose the refresh time value of the game : \n\n" + \
@@ -277,7 +322,13 @@ def ask_waiter() :
 
 
 def check_waiter(waiter) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 	
 	param=True
 	if not ((isinstance(waiter, int)) or (isinstance(waiter, float)) ): 
@@ -298,7 +349,14 @@ def check_waiter(waiter) :
 
 
 def ask_max_round() : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
+
 	msg =	"\n\n" + \
 			"please choose the max round number of the game : \n\n" + \
 			"\texpected an {} with min {} and max {} \n".format(type(MAX_ROUND_MAX), MAX_ROUND_MIN, MAX_ROUND_MAX) + \
@@ -331,7 +389,13 @@ def ask_max_round() :
 
 
 def check_max_round(max_round) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 
 	param = True
 	if not isinstance(max_round, int) : 
@@ -352,7 +416,13 @@ def check_max_round(max_round) :
 
 
 def ask_init_cells(dim) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 
 	init_cells_max = int(0.75 * dim **2) 
 
@@ -393,7 +463,13 @@ def ask_init_cells(dim) :
 
 
 def check_init_cells(init_cells, dim) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 
 	init_cells_max = int(0.75 * dim **2) 
 
@@ -421,7 +497,13 @@ def check_init_cells(init_cells, dim) :
 
 
 def decor_param(param) : 
-	""" """
+	"""return default argumennts
+
+	positional args  	: - 
+	optional args 		: -	
+	return 				: dict object with key/values of arguments 
+	raises				: - 
+	"""
 
 	if not param : 
 		print("we will ask you to choose this parametre manualy :(\n")
