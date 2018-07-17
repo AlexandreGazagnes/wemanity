@@ -36,8 +36,6 @@ def intro() :
 	raise				: - 
 	"""
 
-	logging.info("intro() called")
-
 	os.system("clear")
 
 	welcome()
@@ -63,8 +61,6 @@ def close() :
 	return 				: -
 	raise				: - 
 	"""
-
-	logging.info("close() called")
 
 	input("\n\npress <Enter> to end the program...\n\n")
 
