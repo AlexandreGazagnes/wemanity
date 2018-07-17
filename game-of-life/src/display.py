@@ -8,8 +8,12 @@ display.py
 
 
 """
-Find here all print functions organized in master level (intro for exemple), and various sub levels (header for exemple)
-even if it is a little overkilled, it is better to have all this features in the same module
+find here all print functions organized in master level (intro for exemple), 
+and various title/subtitles levels (header for exemple)
+
+even if it is a little 'overkilled', it is better to have all this features 
+in the same module
+
 see various comments and doctring for more information
 """
 
@@ -23,13 +27,13 @@ import os, logging
 
 
 def intro() : 
-	"""basic welcome screen with print out instcuctions to stdout
+	"""basic welcome screen with print of instructions to stdout
 
 	positional args  	: - 
 	optional args 		: -
 	do 					: print out welcome message 	
-	return 				: 0 
-	raises				: - 
+	return 				: -
+	raise				: - 
 	"""
 
 	logging.info("intro() called")
@@ -49,18 +53,15 @@ def intro() :
 
 	input("press <Enter> to continue...\n")	
 
-	return 0
-
 
 def close() : 
-
-	"""basic bye screen with print out ending message to stdout
+	"""basic bye screen with print of an ending message to stdout
 
 	positional args  	: - 
 	optional args 		: -
 	do 					: print out ending message 	
-	return 				: 0 
-	raises				: - 
+	return 				: -
+	raise				: - 
 	"""
 
 	logging.info("close() called")
@@ -81,10 +82,16 @@ def close() :
 
 	print(msg)
 
-	return 0
-
 
 def header() : 
+	"""basic header title called by every display's print function
+
+	positional args  	: - 
+	optional args 		: -
+	do 					: print out an 'header' to have a fancy UI
+	return 				: -
+	raise				: - 
+	"""
 
 	msg = str(	"#########################################\n"
 				"\n"
@@ -96,9 +103,15 @@ def header() :
 	print(msg)
 
 
-
-
 def options() : 
+	"""basic subtitle called by every arg_manager UI
+
+	positional args  	: - 
+	optional args 		: -
+	do 					: print out an subtitle and header to have a fancy UI
+	return 				: -
+	raise				: - 
+	"""
 
 	header()
 
@@ -109,6 +122,14 @@ def options() :
 
 
 def game() : 
+	"""basic subtitle called by every GameOfLife._start or GameOfLife._next UI
+
+	positional args  	: - 
+	optional args 		: -
+	do 					: print out an subtitle and header to have a fancy UI
+	return 				: -
+	raise				: - 
+	"""
 
 	header()
 
@@ -119,6 +140,14 @@ def game() :
 
 
 def welcome() : 
+	"""basic subtitle called by intro in the GameOfLife.__init__ UI
+
+	positional args  	: - 
+	optional args 		: -
+	do 					: print out an subtitle and header to have a fancy UI
+	return 				: -
+	raise				: - 
+	"""
 
 	header()
 
@@ -129,6 +158,14 @@ def welcome() :
 
 
 def end() : 
+	"""basic subtitle called by close for the last screen of game's UI
+
+	positional args  	: - 
+	optional args 		: -
+	do 					: print out an subtitle and header to have a fancy UI
+	return 				: -
+	raise				: - 
+	"""
 
 	header()
 
@@ -140,9 +177,9 @@ def end() :
 
 def end_no_lives() : 
 
-	msg = 	"--------------------------------------------\n"+\
-			"         END --> no more cells living\n"   +\
-			"--------------------------------------------\n"+\
+	msg = 	"--------------------------------------------\n"	+\
+			"         END --> no more cells living\n"  			+\
+			"--------------------------------------------\n"	+\
 			"\n" * 2
 
 	print(msg)
@@ -151,9 +188,9 @@ def end_no_lives() :
 
 def end_last_round() : 
 
-	msg = 	"--------------------------------------------\n"+\
-			"        END --> maximum round reached     \n"   +\
-			"--------------------------------------------\n"+\
+	msg = 	"--------------------------------------------\n"	+\
+			"        END --> maximum round reached\n"			+\
+			"--------------------------------------------\n"	+\
 			"\n" * 2
 
 	print(msg)
@@ -162,12 +199,10 @@ def end_last_round() :
 
 def end_game_fixed() : 
 
-	msg = 	"--------------------------------------------\n"+\
-			"END --> gamed fixed no more evol can happend    \n"   +\
-			"--------------------------------------------\n"+\
+	msg = 	"--------------------------------------------\n"	+\
+			"END --> gamed fixed no more evol can happend\n"	+\
+			"--------------------------------------------\n"	+\
 			"\n" * 2
 
 	print(msg)
 	close()
-
-
