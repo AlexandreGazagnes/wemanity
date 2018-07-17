@@ -22,7 +22,7 @@ see all information bellow in doctrings or ins comments
 
 # import 
 
-import os, sys, logging, random, time
+import os, logging, random, time
 
 import pandas as pd
 import numpy as np
@@ -39,15 +39,15 @@ class GameOfLife(object) :
     # class consts
 
     # game representation
-    __WHITE_SPACE   =   ' '
-    __CELL          =   'o'
+    __DEAD_CELL   =   ' '
+    __LIVING_CELL =   'o'
 
     # exit status 
     __EXIT_STATUS = {   0 : "game is running / press <Enter> for new round",
-                        1 : "all cells are dead, game frozen", 
+                        1 : "all cells are dead, game ended", 
                         2 : "max round reached, game ended",
-                        3 : "game frozen, not evolution can appen (periodicty=1)",
-                        4 : "game frozen, not evolution can appen (periodicty=2)"}
+                        3 : "game frozen, no more evolution possible (periodicty=1)",
+                        4 : "game frozen, no more evolution possible (periodicty=2)"}
 
 
     def __init__(self, options_dict=None) : 
@@ -105,7 +105,9 @@ class GameOfLife(object) :
         self.__2last_cells          = self._cells
 
         # init game_state 
-        self._game_state            = (self._round, self._cells, 0) 
+        self._state            = (self._round, self._cells, 0) 
+
+        self.__start_called = False
 
 
     # properties : no comments no docstrings
@@ -141,12 +143,23 @@ class GameOfLife(object) :
 
 
     @property   
+    def waiter(self):
+        return self._waiter
+
+
+    @property   
+    def auto_mode(self):
+        return self._auto_mode
+
+
+    @property   
     def cells_nb(self):
         return len(self._cells)
 
+
     @property   
-    def game_state(self):
-        return self._game_state
+    def state(self):
+        return self._state
     
 
     @property   
@@ -167,8 +180,8 @@ class GameOfLife(object) :
         # use pandas.to string, but without indexes and columns' name
         s   = self._space.to_string(index=False, header=False)
         # replace 0 and 1 with readable values
-        s   = s.replace("0", self.__WHITE_SPACE).replace("1", self.__CELL)
-        # add a frame around the sapce to see it 
+        s   = s.replace("0", self.__DEAD_CELL).replace("1", self.__LIVING_CELL)
+        # add a und the sapce to see it 
         s   = s.replace("\n", "|\n|")
         s   +="|\n" 
         s   = "\n|"+s
@@ -287,7 +300,8 @@ class GameOfLife(object) :
                               a specific cell
         optional args       : -
         do                  : - 
-        return              : type list : list of tuples (y,x) as coords of existing neighbours
+        return              : type list : list of tuples (y,x) as coords of 
+                              existing neighbours
         raise               : - 
         """
 
@@ -349,7 +363,7 @@ class GameOfLife(object) :
         # from living cells : delete cells who die 
         
         # -------------------------------------
-        # -- > please use list comprehension
+        # -- > use list comprehension
         # -------------------------------------
 
         for (i,j) in self._cells : 
@@ -420,32 +434,32 @@ class GameOfLife(object) :
             return False
 
 
-    def __update_game_state(self) : 
+    def __update_state(self) : 
         """private method : regarding self._cells, self.max_round, (etc etc) 
         define if games has to stop or not 
         
         positional args     : -
         optional args       : -
-        do                  : update self._game_state with self._round, 
+        do                  : update self._state with self._round, 
                               self.cells_nb,  and status (ie __EXIT_STATUS)
         return              : - 
         raise               : -
         """
 
         if self.__detect_no_lives() : 
-            self._game_state =  (self.round, self.cells_nb, 1)
+            self._state =  (self.round, self.cells_nb, 1)
         
         elif self.__detect_last_round() : 
-            self._game_state =  (self.round, self.cells_nb, 2)
+            self._state =  (self.round, self.cells_nb, 2)
         
         elif self.__detect_game_fixed(self.__last_cells) : 
-            self._game_state =  (self.round, self.cells_nb, 3)
+            self._state =  (self.round, self.cells_nb, 3)
         
         elif self.__detect_game_fixed(self.__2last_cells) : 
-            self._game_state =  (self.round, self.cells_nb, 4)
+            self._state =  (self.round, self.cells_nb, 4)
         
         else : 
-            self._game_state =  (self.round, self.cells_nb, 0)
+            self._state =  (self.round, self.cells_nb, 0)
 
 
     def __looper(self) : 
@@ -470,7 +484,7 @@ class GameOfLife(object) :
 
         # else ask to user input before continuing
         else : 
-            input(  "press <Enter> for next iteration\n"
+            input(  "press <Enter>    to continue\n"
                     "press <Crlt + Z> to quit \n")
 
         # incremenent round
@@ -495,6 +509,8 @@ class GameOfLife(object) :
         raise               : - 
         """
 
+        self.__start_called = True 
+
         os.system("clear")
         game()
 
@@ -512,7 +528,7 @@ class GameOfLife(object) :
 
         positional args     : -
         optional args       : -
-        do                  : update self._cells, self._space, self._game_state 
+        do                  : update self._cells, self._space, self._state 
                               and print self._space 
         return              : - 
         raise               : - 
@@ -529,10 +545,10 @@ class GameOfLife(object) :
         # print game repr
         print(self.space)
 
-        # update _game_state and call __looper if needed
-        self.__update_game_state()
+        # update _state and call __looper if needed
+        self.__update_state()
         # if exit status == 0 call __looper() 
-        if not self._game_state[2] :                
+        if not self._state[2] :                
             self.__looper()
 
 
@@ -542,17 +558,17 @@ class GameOfLife(object) :
         
         positional args     : -
         optional args       : -
-        do                  : call self._start()
-                               loop on  self._next() 
-                                detect if game exit conditions and break 
-                                or call sefL.__looper before new iteration 
+        do                  : call self._start(), then loop on self._next(),  
+                              detect if game exit conditions and return
+                              self._state if needed to break the loop
         return              : 3 dim tuple with self._round, self.cells_nb and 
                               exit status   
         raise               : - 
         """
 
         # initial state before starting game
-        self._start()
+        if not self.__start_called : 
+            self._start()
 
         # main loop 
         while True : 
@@ -561,10 +577,9 @@ class GameOfLife(object) :
             self._next()
 
             # control game state
-            if self._game_state[2] : 
+            if self._state[2] : 
+
                 # if scenario occuring return 3 dim tupple
-                return self._game_state
-
-
+                return self._state
 
 

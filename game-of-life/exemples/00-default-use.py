@@ -24,15 +24,17 @@ let yourself go and everything will be fine
 
 
 
-# Comand Line Interface
+# Comamnd Line Interface
 ------------------------------------------------------------------------------
 
-in your cli, type  : 
--- $ python3 [your-path]/GameOfLife.main.py -- 
+# in your cli, type  : 
+
+-- $ python3 [your-path]/game-of-life.main.py -- 
+
 or 
  
--- $ chmod +x [your-path]/GameOfLife.main.py  --
--- $ [your-path]/GameOfLife.main.py  -- 
+-- $ chmod +x [your-path]/game-of-life.main.py  --
+-- $ [your-path]/game-of-life.main.py  -- 
 
 
 
@@ -40,17 +42,16 @@ or
 
 
 
-# From python / ipython / atom / spyder etc etc interpreter : 
+# From python / ipython / atom / spyder (...) interpreter : 
 ------------------------------------------------------------------------------
 
 # import manualy : 
-from [your-path]/GameOfLife.src import GameOfLife
+from src import GameOfLife
 
 # init game instance :
 game = GameOfLife()
 
-# run :  
+# then run it :  
 game.run()
 
-"""
 

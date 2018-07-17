@@ -30,12 +30,6 @@ from src.consts import *
 from src.display import *
 
 
-# logging
-
-l = logging.WARNING
-logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
-
-
 # functions
 
 def arg_manager(options_dict=None) : 
@@ -145,8 +139,6 @@ def check_options(options) :
 	return 				: dict object with key/values of arguments 
 	raises				: - 
 	"""
-
-	logging.info(options)
 
 	check_dim(options["dim"])
 	check_waiter(options["waiter"])
@@ -472,7 +464,6 @@ def check_init_cells(init_cells, dim) :
 	"""
 
 	init_cells_max = int(0.75 * dim **2) 
-
 
 	param = True
 
