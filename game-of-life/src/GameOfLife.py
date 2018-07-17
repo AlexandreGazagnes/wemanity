@@ -33,17 +33,30 @@ class GameOfLife(object) :
 
 	# class consts
 
-	__white_space 	= 	' '
-	__cell			= 	'o'
+	# game representation
+	__WHITE_SPACE 	= 	' '
+	__CELL			= 	'o'
 
+	# exit status 
+	__EXIT_STATUS = { 		0 : "game is running / press <Enter> for new round",
+							1 : "all cells are dead, game frozen", 
+							2 : "max round reached, game ended",
+							3 : "game frozen, not evolution can appen (periodicty=1)",
+							4 : "game frozen, not evolution can appen (periodicty=2)"}
 
 	def __init__(self, options_dict=None) : 
-		""" """
+		""" init method 	
+		
+		positional args  	: -  
+		optional args 		: options dict from arg_manager(), manualy written dict, or None
+		do 					: init an GameOfLife object and print out into / welcome msg	
+		return 				: a GameOfLife instance
+		raise				: - 
+		"""
 
 		# print intro
 		intro()
 
-		
 		# if options -> check and ask, else arg_manager from scratch
 		options_dict = arg_manager(options_dict)
 
@@ -65,21 +78,21 @@ class GameOfLife(object) :
 		# if user just give a number => init a random location of cells 
 		if isinstance(self._init_cells, int) : 
 
-			self._cells = random.sample(self.__list_of_coords, self._init_cells)
-			self._init_cells = self._cells
+			self._cells 		= random.sample(self.__list_of_coords, self._init_cells)
+			self._init_cells 	= self._cells
 
 		# else transform user cells in game's cells
 		elif isinstance(self._init_cells, list) : 
 
-			self._cells = self._init_cells
+			self._cells 		= self._init_cells
 
 		# record each cells of last round and last of last round
 		# to be able to recon 2 same states of the game 
-		self.__last_cells = self._cells
-		self.__2last_cells = self._cells
+		self.__last_cells 		= self._cells
+		self.__2last_cells 		= self._cells
 
-		# incorporate list of cells to the game represntation
-		self._update_space()
+		# init game_state 
+		self._game_state 		= (self._round, self._cells, 0) 
 
 
 	@property
@@ -116,26 +129,29 @@ class GameOfLife(object) :
 	def cells_nb(self):
 		return len(self._cells)
 
-	# @property
-	# def last_cells(self):
-	# 	return self.__last_cells
-
-	# @property
-	# def last_2cells(self):
-	# 	return self.__2last_cells
+	@property	
+	def game_state(self):
+		return self._game_state
 	
 
 	@property	
 	def space(self):
-		"""this is the UI game representation """
+		"""this is the UI game representation 
+		
+		positional args  	: -
+		optional args 		: -
+		do 					: -
+		return 				: return a specific str repr of game space
+		raise				: - 
+		"""
 
-		txt = "\n"*4
+		txt = "\n"*2
 
 		# game representation / space
 		# use pandas.to string, but without index and columns name
 		s 	= self._space.to_string(index=False, header=False)
 		# replace 0 and 1 with readable values
-		s 	= s.replace("0", self.__white_space).replace("1", self.__cell)
+		s 	= s.replace("0", self.__WHITE_SPACE).replace("1", self.__CELL)
 		# add a frame around the sapce to see it 
 		s 	= s.replace("\n", "|\n|")
 		s 	+="|\n" 
@@ -144,9 +160,7 @@ class GameOfLife(object) :
 
 		# quit if needed
 		txt += 	s
-		txt +=	"\n"*2
-		print("press <Crlt + Z> to quit")
-		txt +=	"\n"*2
+		txt += "\n"
 
 		# add game variables 
 		txt +=	"round       =  {}\n".format(self.round)
@@ -157,11 +171,17 @@ class GameOfLife(object) :
 		txt += 	"dim         =  {}\n".format(self.dim)
 		txt += 	"max_round   =  {}\n".format(self.max_round)
 		txt += 	"init_cells  =  {}\n".format(self.init_cells_nb)
+		txt +=	"\n"*2
+
+		txt +=	"press <Crlt + Z> to quit"
+		txt +=	"\n"*2
 		
 		return txt
 
 
 	def __str__(self) : 
+		"""jus overwrite teh __str__ method """
+		
 		return self.space
 
 
@@ -176,40 +196,103 @@ class GameOfLife(object) :
 
 
 	def neighbours_loc(self, i,j) : 
-		"""for the cell at coord (i,j) give the coords (k,l) of living neighbours """
+		"""for the cell at coord (i,j) give the coords (k,l) of living neighbours"""
 
 		return self.__give_neighbours_coords(i,j)
 
 
 	def __build_default_space(self) : 
-		"""private method : build a space of self.dim ** 2 cells, will all defualt values ie 0/dead"""
+		"""private method : build a space of self.dim ** 2 cells, will all defualt values ie 0/dead
+		
+		positional args  	: - 
+		optional args 		: -
+		do 					: -	
+		return 				: type pd.DataFrame : empty dataframe (full of 0) of shape self.dim * self.dim
+		raise				: - 
+		"""
 
 		i = np.arange(self.dim)
+
 		return(pd.DataFrame(0, index=i , columns=i))
 
 
-	def _update_space(self) : 
-		"""method update incorporate cells from self._cells (list of coord of liviving cells in game space represenation"""
+	def __update_space(self) : 
+		"""method update incorporate cells from self._cells (list of coord of 
+		liviving cells in game space represenation
+
+		positional args  	: - 
+		optional args 		: -
+		do 					: update self._space with self._cells loc as 1 	
+		return 				: - 
+		raise				: - 
+		"""
 
 		# reset an empty space	in a tmp var	
 		new_space = self.__build_default_space()
-
-		logging.info(self._cells)
 
 		# replace 0 with 1 if cell in self._cells list 
 		for i,j in self._cells : 
 			new_space.loc[i,j] = 1 
 
-		update _space
+		# update _space
 		self._space = new_space
 
 
-	def _update_cells(self) : 	
+	def __count_neighbours(self, i,j) : 
+		"""count how many living cells for one coord 
+
+		positional args  	: int i, int j wich stands for y, and x coord of a cell
+		optional args 		: -
+		do 					: -	
+		return 				: type int :  number of living neighbours
+		raise				: - 
+		"""
+
+		# logging.info("__count_neighbours called")
+
+		neighbours = list()
+		
+		for (i,j) in self.__give_neighbours_coords(i,j) : 
+			if self._space.iloc[i,j] == 1 : 
+				neighbours.append(1)
+		
+		return len(neighbours)
+
+
+	def __give_neighbours_coords(self, i,j)  : 
+		"""give all coords of direct neihbourhood for one cells
+
+		positional args  	: int i, int j wich stands for y, and x coord of a cell
+		optional args 		: -
+		do 					: -	
+		return 				: type list : list of tuples (y,x) as coords of existing neighbours
+		raise				: - 
+		"""
+
+		# logging.info("__give_neighbours_coords called")
+
+		candidates = [	(i+1, j+1), (i-1, j-1),
+						(i+1, j-1), (i-1, j+1),
+						(i, j-1), (i, j+1),
+						(i+1, j), (i-1, j)	]
+
+		autorized = [(i,j) for (i,j) in candidates if (i,j) in self.__list_of_coords]
+
+		return autorized
+
+
+	def __update_cells(self) : 	
 		"""fmethod update to decide, regarding the neighbourhood, if a cell change its statse (living/dead) or 
 		stay alive/dead
 		rules : if alive with 2/3 neighbours alive : keep living, else is killed 
-		        if dead with 3 neighbours : wake up and live else keep deading""" 
+		        if dead with 3 neighbours : wake up and live else keep deading
 
+		positional args  	: - 
+		optional args 		: -
+		do 					: update self._cells with live/die rules of the game 	
+		return 				: - 
+		raise				: - 
+		"""
 
 		# create 2 empty list of cells one to add and one to dell 
 		add_cells 	= list()
@@ -240,9 +323,6 @@ class GameOfLife(object) :
 		# copy _cells in a tmp var
 		new_cells = list(self._cells)
 
-		logging.info({(i,j) : self.neighbours_nb(i,j) for i,j in self._cells})
-
-
 		# from living cells : delete cells who die 
 		# use list comprehension
 		for (i,j) in self._cells : 
@@ -255,47 +335,99 @@ class GameOfLife(object) :
 		self._cells = new_cells
 
 
-	def __count_neighbours(self, i,j) : 
-		"""count how many living cells for one coord """
+	def __detect_no_lives(self) : 
+		"""if cells == 0 stop the game
 
-		# logging.info("__count_neighbours called")
+		positional args  	: -
+		optional args 		: -
+		do 					: -
+		return 				: True if no cells alive, else False 
+		raise				: - 
+		"""
 
-		neighbours = list()
+		if not self._cells  : 
+			end_no_lives()
+			return True
+		return False
+
+
+	def __detect_last_round(self) : 
+		"""if max_round stop the game
+
+		positional args  	: -
+		optional args 		: -
+		do 					: -
+		return 				: True if game's iteration reached  self._max_round, 
+							  else False 
+		raise				: - 
+		"""
+
+		if self._round == self._max_round : 
+			end_last_round()
+			return True
+		return False
+
+
+	def __detect_game_fixed(self, arg) : 
+		""" eval if game fixed with last_round
 		
-		for (i,j) in self.__give_neighbours_coords(i,j) : 
-			if self._space.iloc[i,j] == 1 : 
-				neighbours.append(1)
+		positional args  	: the cells list to compare to self._cells 
+		optional args 		: -
+		do 					: -
+		return 				: True if game's is fixed, 
+							  else False 
+		raise				: - 
+		"""
+
+		if len(arg) == len(self._cells) : 
+			for i in  arg : 
+				if i not in self._cells : 
+					return False
+			end_game_fixed()
+			return True
+		else : 
+			return False
+
+
+	def __update_game_state(self) : 
+		"""regarding sef._cells, self.max_round, etc etc define if games stop or not 
 		
-		return len(neighbours)
+		positional args  	: -
+		optional args 		: -
+		do 					: update self._game_state with self._round, self.cells_nb,
+							  and status (ie __EXIT_STATUS)
+		return 				: - 
+		raise				: -
+		"""
 
-
-	def __give_neighbours_coords(self, i,j)  : 
-		"""give all coords of direct neihbourhood for one coord"""
-
-		# logging.info("__give_neighbours_coords called")
-
-		candidates = [	(i+1, j+1), (i-1, j-1),
-						(i+1, j-1), (i-1, j+1),
-						(i, j-1), (i, j+1),
-						(i+1, j), (i-1, j)	]
-
-		autorized = [(i,j) for (i,j) in candidates if (i,j) in self.__list_of_coords]
-
-		return autorized
-
-
-	def _next(self) :
-		""" update game's state and show game repr"""			
-
-		self._update_cells()
-		self._update_space()
-		print(self.space)
+		if self.__detect_no_lives() : 
+			self._game_state =  (self.round, self.cells_nb, 1)
+		
+		elif self.__detect_last_round() : 
+			self._game_state =  (self.round, self.cells_nb, 2)
+		
+		elif self.__detect_game_fixed(self.__last_cells) : 
+			self._game_state =  (self.round, self.cells_nb, 3)
+		
+		elif self.__detect_game_fixed(self.__2last_cells) : 
+			self._game_state =  (self.round, self.cells_nb, 4)
+		
+		else : 
+			self._game_state =  (self.round, self.cells_nb, 0)
 
 
 	def __looper(self) : 
 		"""find here the looper method wich is used to deal with auto_mode True/Flase
 		record last_cells and 2_last_cells to track fixed structures
 		and increment round
+		
+		positional args  	: -
+		optional args 		: -
+		do 					: handle user interface for next iteration, 
+							  update self._round, self.__last_cells and 
+							  self.__2last_cells,  
+		return 				: - 
+		raise				: - 
 		"""
 
 		# if auto_mode just sleep a certain time 
@@ -316,77 +448,84 @@ class GameOfLife(object) :
 			self.__2last_cells = self._cells
 
 
-	def __detect_no_lives(self) : 
-		"""if cells == 0 stop the game"""
+	def _start(self) : 
+		"""first game representation for user, ask 
 
-		if not self._cells  : 
-			end_no_lives()
-			return True
+		positional args  	: -
+		optional args 		: -
+		do 					: update self._space and print it, ask user input to start 
+		return 				: - 
+		raise				: - 
 
-
-	def __detect_last_round(self) : 
-		"""if max_round stop the game"""
-
-		if self._round == self._max_round : 
-			end_last_round()
-			return True
-
-
-	def __detect_game_fixed(self, arg) : 
-		""" eval if game fixed with last_round"""
-
-		if len(arg) == len(self._cells) : 
-			for i in  arg : 
-				if i not in self._cells : 
-					return False
-			end_game_fixed()
-			return True
-		else : 
-			return False
-	
-
-	def run(self) : 
-		"""main method of the game, control strat, loop and exit values of a game
 		"""
 
-		# initial state before starting game
-		# header + game title
 		os.system("clear")
 		game()
+
 		# game repr
+		self.__update_space()
 		print(self.space)
+		
 		# user input 
 		print("press <Enter> to start")
 		input("press <Crlt + Z> to quit\n")	
 
-		# useless????
-		self.__cont = True
+
+	def _next(self) :
+		""" update game's state and show game repr for each round
+
+		positional args  	: -
+		optional args 		: -
+		do 					: update self._cells, self._space, self._game_state 
+					    	  and print self._space 
+		return 				: - 
+		raise				: - 
+		"""
+
+		# header + game title
+		os.system("clear")
+		game()
+
+		self.__update_cells()
+		self.__update_space()
+		print(self.space)
+
+		self.__update_game_state()
+		# if exit status == 0 call __looper() 
+		if not self._game_state[2] : 				
+			self.__looper()
+
+
+
+	def run(self) : 
+		"""main method of the game, control strat, loop and exit values of a game
+		
+		positional args  	: -
+		optional args 		: -
+		do 					: call self._start()
+							   loop on  self._next() 
+							  	detect if game exit conditions and break 
+							  	or call sefL.__looper before new iteration 
+		return 				: 3 dim tuple with self._round, self.cells_nb and exit status   
+		raise				: - 
+		"""
+
+		# initial state before starting game
+		self._start()
 
 		# main loop 
-		while self.__cont : 
-			# header + game title
-			os.system("clear")
-			game()
+		while True : 
 
-			# call next to upate game status 
+			# call next to upate game's parmas  
 			self._next()
 
-			# control game state , and return tupple if one end scenario 
-			# is ocuring
-			if self.__detect_no_lives() : 
-				logging.info(1)
-				return self.round, self.cells_nb, 1
-			if self.__detect_last_round() : 
-				logging.info(2)
-				return self.round, self.cells_nb, 2
-			if self.__detect_game_fixed(self.__last_cells) : 
-				logging.info(3)
-				return self.round, self.cells_nb, 3
-			if self.__detect_game_fixed(self.__2last_cells) : 
-				logging.info(4)
-				return self.round, self.cells_nb, 4
-			else : 
-				# else just do "loop operartions and go on for an other loop"
-				self.__looper()
+			# control game state
+			if self._game_state[2] : 
+				# if scenario occuring return 3 dim tupple
+				return self._game_state
+
+
+
+
 
 
