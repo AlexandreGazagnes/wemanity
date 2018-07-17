@@ -3,12 +3,12 @@
 
 
 """
-kata_gol.py
+main.py
 """
 
 
 """
-find here the main function for my representtaion of the game-of-life
+find here the main function of the game-of-life
 """
 
 
@@ -29,13 +29,8 @@ logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 def main() : 
 
-
-	gol = GameOfLife(options)
-	gol.run()
-
-	close()
-
-
+	game = GameOfLife()
+	game.run()
 
 
 if __name__ == '__main__':
