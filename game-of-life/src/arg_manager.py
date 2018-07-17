@@ -36,9 +36,10 @@ def arg_manager(options_dict=None) :
     """return default argumennts
 
     positional args     : - 
-    optional args       : - 
+    optional args       : -
+    do                  : - 
     return              : dict object with key/values of arguments 
-    raises              : - 
+    raise               : - 
     """
 
     if not isinstance(options_dict, dict) : 
@@ -113,12 +114,11 @@ def default_args() :
     """return default argumennts
 
     positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    optional args       : -
+    do                  : - 
+    return              : dict object with key/values of default arguments 
+    raise               : - 
     """
-
-    logging.info("default_args() called")
 
     options = dict(     dim         = DIM_DEFAULT, 
                         init_cells  = INIT_CELLS_DEFAULT, 
@@ -132,12 +132,13 @@ def default_args() :
 
 
 def check_options(options) : 
-    """return default argumennts
+    """check all args from an options_dict
 
     positional args     : - 
-    optional args       : - 
+    optional args       : -
+    do                  : - 
     return              : dict object with key/values of arguments 
-    raises              : - 
+    raise               : - 
     """
 
     check_dim(options["dim"])
@@ -148,12 +149,13 @@ def check_options(options) :
 
 
 def ask_dim() : 
-    """return default argumennts
+    """provide a fancy UI to ask options dict dimension
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : -
+    optional args       : -
+    do                  : ask user to choose dimension parametre
+    return              : int : number of x and y dim of game space
+    raise               : - 
     """
 
     msg =   "\n\n" + \
@@ -188,12 +190,13 @@ def ask_dim() :
 
 
 def check_dim(dim) : 
-    """return default argumennts
+    """check if dim is a valid argument
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : int : dim from options dict
+    optional args       : -
+    do                  : - 
+    return              : True if dim is valid else False
+    raise               : - 
     """
 
     param = True
@@ -216,12 +219,13 @@ def check_dim(dim) :
 
 
 def ask_auto_mode() : 
-    """return default argumennts
+    """provide a fancy UI to ask options dict auto_mode
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : -
+    optional args       : -
+    do                  : ask user to choose auto_mode parametre
+    return              : bool : True or False
+    raise               : - 
     """
     
     msg =   "\n\n" + \
@@ -255,12 +259,13 @@ def ask_auto_mode() :
 
 
 def check_auto_mode(auto_mode) : 
-    """return default argumennts
+    """check if auto_mode is a valid argument
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : int : auto_mode from options dict
+    optional args       : -
+    do                  : - 
+    return              : True if auto_mode is valid else False
+    raise               : - 
     """
     
     param = True 
@@ -274,12 +279,13 @@ def check_auto_mode(auto_mode) :
 
 
 def ask_waiter() : 
-    """return default argumennts
+    """provide a fancy UI to ask options dict waiter
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : -
+    optional args       : -
+    do                  : ask user to choose waiter parametre
+    return              : float : number seconds to wait between two round
+    raise               : - 
     """
 
     msg =   "\n\n" + \
@@ -314,12 +320,13 @@ def ask_waiter() :
 
 
 def check_waiter(waiter) : 
-    """return default argumennts
+    """check if waiter is a valid argument
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : float : waiter from options dict
+    optional args       : -
+    do                  : - 
+    return              : True if waiter is valid else False
+    raise               : - 
     """
     
     param=True
@@ -341,12 +348,13 @@ def check_waiter(waiter) :
 
 
 def ask_max_round() : 
-    """return default argumennts
+    """provide a fancy UI to ask options dict max_round
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : -
+    optional args       : -
+    do                  : ask user to choose max_round parametre
+    return              : int : number ofmax_round the game can reach
+    raise               : - 
     """
 
     msg =   "\n\n" + \
@@ -381,12 +389,13 @@ def ask_max_round() :
 
 
 def check_max_round(max_round) : 
-    """return default argumennts
+    """check if max_round is a valid argument
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : int : max_round from options dict
+    optional args       : -
+    do                  : - 
+    return              : True if max_round is valid else False
+    raise               : - 
     """
 
     param = True
@@ -397,7 +406,7 @@ def check_max_round(max_round) :
     else : 
         if max_round > MAX_ROUND_MAX :
             param = False
-            print("raise ValueError(max_round value error, expected max {}, recieved {}".format(MAX_ROUND_MAX, max_round))
+            print("raise  ValueError(max_round value error, expected max {}, recieved {}".format(MAX_ROUND_MAX, max_round))
         if max_round < MAX_ROUND_MIN :
             param = False
             print("ValueError(max_round value error, expected min {}, recieved {}".format(MAX_ROUND_MIN, max_round))
@@ -408,12 +417,14 @@ def check_max_round(max_round) :
 
 
 def ask_init_cells(dim) : 
-    """return default argumennts
+    """provide a fancy UI to ask options dict dimenstion
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : int : options_dict as game dimension
+    optional args       : -
+    do                  : ask user to choose init_cells parametre
+    return              : int number of random init_cells or list of specific 
+                          alive cells to init the game
+    raise               : - 
     """
 
     init_cells_max = int(0.75 * dim **2) 
@@ -455,12 +466,14 @@ def ask_init_cells(dim) :
 
 
 def check_init_cells(init_cells, dim) : 
-    """return default argumennts
+    """check if init_cells is a valid argument
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : int  or list : init_cells from options dict
+                          int dim options dict dimension  
+    optional args       : -
+    do                  : - 
+    return              : True if init_cells is valid else False
+    raise               : - 
     """
 
     init_cells_max = int(0.75 * dim **2) 
@@ -477,7 +490,7 @@ def check_init_cells(init_cells, dim) :
     else : 
         if init_cells > init_cells_max :
             param = False
-            print("raise ValueError(init_cells value error, expected max {}, recieved {}".format(init_cells_max, init_cells))
+            print("raise  ValueError(init_cells value error, expected max {}, recieved {}".format(init_cells_max, init_cells))
         if init_cells < INIT_CELLS_MIN :
             param = False
             print("ValueError(init_cells value error, expected min {}, recieved {}".format(INIT_CELLS_MIN, init_cells))
@@ -488,12 +501,13 @@ def check_init_cells(init_cells, dim) :
 
 
 def decor_param(param) : 
-    """return default argumennts
+    """decor a parametre from options_dict with a specific message
 
-    positional args     : - 
-    optional args       : - 
-    return              : dict object with key/values of arguments 
-    raises              : - 
+    positional args     : bool : param, from options_dict
+    optional args       : -
+    do                  : if param is False : print a specific message
+    return              : - 
+    raise               : - 
     """
 
     if not param : 
