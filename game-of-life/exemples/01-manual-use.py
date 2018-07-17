@@ -11,8 +11,8 @@
 for a manual use, you can import and check manualy every class argument for 
 each round
 
-behind the woods, GameOfLife.run() call 2 methods : first one time GameOfLife._start() 
-and after call GameOfLife._next() until game'end.
+behind the woods, GameOfLife.run() call 2 methods : first one is GameOfLife._start() called only once
+and after GameOfLife._next() until game'end.
 
 you can manualy call theses methods
 
@@ -21,7 +21,7 @@ you can manualy call theses methods
 
 
 
-# From python / ipython / atom / spyder (...) interpreter : 
+# From python / ipython / atom / spyder / jupyter(...) interpreter : 
 ------------------------------------------------------------------------------
 
 # import manualy : 
@@ -48,7 +48,7 @@ print(game.init_cells_loc)
 print(game.init_cells_nb)
 
 # then run it :  
-# game.run() 	# UNCOMMENT THIS LINE IF NEEDED 
+# game.run() 					# UNCOMMENT THIS LINE IF NEEDED 
 
 
 # or for a more painful usage : 
@@ -73,7 +73,7 @@ print(game.state)
   
 
 # when you are tired to call _next() you can call run() : 
-# game.run() 	# UNCOMMENT THIS LINE IF NEEDED 
+# game.run() 				# UNCOMMENT THIS LINE IF NEEDED 
 
 
 ""

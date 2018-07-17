@@ -19,6 +19,3 @@ from src.GameOfLife import *
 
 
 
-
-
-
