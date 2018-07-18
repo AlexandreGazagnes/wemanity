@@ -33,7 +33,10 @@ from src.display import *
 # functions
 
 def arg_manager(options_dict=None) : 
-    """return default argumennts
+    """ build and/or check an dict of parametres known as options_dict which 
+    will be used to instanciate an GameOfLife object
+
+    usage : inside or/and ouside GameOfLife.__init__ method
 
     positional args     : - 
     optional args       : -
@@ -136,8 +139,8 @@ def check_options(options) :
 
     positional args     : - 
     optional args       : -
-    do                  : - 
-    return              : dict object with key/values of arguments 
+    do                  : check all parametres from a options dict
+    return              : -  
     raise               : - 
     """
 
@@ -353,7 +356,7 @@ def ask_max_round() :
     positional args     : -
     optional args       : -
     do                  : ask user to choose max_round parametre
-    return              : int : number ofmax_round the game can reach
+    return              : int : number of max_round the game can reach
     raise               : - 
     """
 
