@@ -36,67 +36,67 @@ from src.display import *
 # functions
 
 def test_intro(monkeypatch) : 
-	""" """
+    """ """
 
-	monkeypatch.setattr('builtins.input', lambda x: "")
-	intro()
+    monkeypatch.setattr('builtins.input', lambda x: "")
+    intro()
 
 
 def test_close(monkeypatch) : 
-	""" """
+    """ """
 
-	monkeypatch.setattr('builtins.input', lambda x: "")
-	close()
+    monkeypatch.setattr('builtins.input', lambda x: "")
+    close()
 
 
 def test_header() :
-	""" """
+    """ """
 
-	header()
+    header()
 
 
 def test_options() :
-	""" """
+    """ """
 
-	options()
+    options()
 
 
 def test_game(): 
-	""" """
+    """ """
 
-	game()
+    game()
 
 
 def test_welcome() : 
-	""" """
+    """ """
 
-	welcome()
+    welcome()
 
 
 def test_end() : 
-	""" """
+    """ """
 
-	end()
+    end()
 
 
 def test_end_no_lives(monkeypatch) : 
-	""" """
+    """ """
 
-	monkeypatch.setattr('builtins.input', lambda x: "")
-	end_no_lives() 
+    monkeypatch.setattr('builtins.input', lambda x: "")
+    end_no_lives() 
 
 
 def test_end_last_round(monkeypatch):
-	""" """
+    """ """
 
-	monkeypatch.setattr('builtins.input', lambda x: "")
-	end_last_round()
+    monkeypatch.setattr('builtins.input', lambda x: "")
+    end_last_round()
 
 
 def test_end_game_fixed(monkeypatch): 
-	""" """
+    """ """
 
-	monkeypatch.setattr('builtins.input', lambda x: "")
-	end_game_fixed()
+    monkeypatch.setattr('builtins.input', lambda x: "")
+    end_game_fixed()
 
 
