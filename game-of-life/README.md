@@ -21,19 +21,19 @@ The initial pattern constitutes the seed of the system. The first generation is 
 
 ## Version
 -------------------------------------------------------
-    1.2.0
+1.2.0
 
 ## Licence
 -------------------------------------------------------
-    GNU GENERAL PUBLIC LICENSE
+GNU GENERAL PUBLIC LICENSE
 
 
 ## Requirements
 -------------------------------------------------------
-    python 3.6+
-    pytest 
-    pandas
-    numpy
+* python  v3.5+
+* pytest  
+* pandas  v0.20.3+
+* numpy  v 1.12.0
 	
 
 ## Download
@@ -60,21 +60,20 @@ advanced : ```python3 game-of-life/main.py + [-d /--dim VAL] [-r/--max_round VAL
 
 where : 
 *  -d / --dim is :      the dimension
-*  -r / --max_round :   number max of iterations
-*  -a/--auto_mode is :  auto iterate or ask <Enter> from user input keyboard for each iteration
-*  -w /--waiter is :    refresh time laps
+*  -a/--auto_mode is :  auto iterate or ask <Enter> from user input for each iteration
+*  -w /--waiter is :    refresh time laps (auto mode only)
+*  -r / --max_round :   number max of iterations (auto mode only)
 *  -c/--cells is :      the number or positions of initial living cells
 
 
 
 ### Python Interpreter (python, ipython, atom, spyder, jupyter...) : 
 
-"""
+```
 from src import GameOflife (or import *)
 g = GameOfLife()
 g.run()
-"""
-
+```
 for more exemples please see exemples/
 
 
