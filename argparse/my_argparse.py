@@ -36,7 +36,7 @@ def my_parser(args=None) :
     optional args       : 'args'- for tests only - a string which simulate 
                            the CLI arguments - for a 'normal' use of the package
                            please just call my_parser()
-    return              : type List or Dict with typed and casted args
+    return              : type Dict with typed and casted args
     raises              : TypeError if -l is not an int
                           TypeError if args not a str - tests only
                           NotADirectoryError if -d is not a directory
