@@ -33,7 +33,7 @@ GNU GENERAL PUBLIC LICENSE
 * python  v3.5+
 * pytest  
 * pandas  v0.20.3+
-* numpy  v 1.12.0
+* numpy   v1.12.0+
 	
 
 ## Download
