@@ -38,16 +38,15 @@ The initial pattern constitutes the seed of the system. The first generation is 
 
 ## Download
 -------------------------------------------------------
-    cd
-    git clone https://github.com/AlexandreGazagnes/wemanity/tree/master/game-of-life
-    cd game-of-life/
+```cd
+git clone https://github.com/AlexandreGazagnes/wemanity/tree/master/game-of-life
+cd game-of-life/
+```
 
 ## Install
 -------------------------------------------------------
     
-    
-    no install
-    
+no install
     
     
 
@@ -55,18 +54,16 @@ The initial pattern constitutes the seed of the system. The first generation is 
 -------------------------------------------------------
 
 ### CLI
-standard : python3 game-of-life/main.py
+standard : ```python3 game-of-life/main.py```
 
-advanced : python3 game-of-life/main.py + [-d /--dim VAL] [-r/--max_round VAL] [-a/--auto_mode VAL] [-w /--waiter VAL] [-c/--cells VAL]
+advanced : ```python3 game-of-life/main.py + [-d /--dim VAL] [-r/--max_round VAL] [-a/--auto_mode VAL] [-w /--waiter VAL] [-c/--cells VAL]```
 
 where : 
-* -d / --dim is : the dimension
-* -r / --max_round : number max of iterations
-*  -a/--auto_mode is : auto iterate or ask <Enter> from user input keyboard for each iteration
-         
-	 -w /--waiter is : refresh time laps
-	 
-	 -c/--cells is : the number or positions of initial living cells
+*  -d / --dim is :      the dimension
+*  -r / --max_round :   number max of iterations
+*  -a/--auto_mode is :  auto iterate or ask <Enter> from user input keyboard for each iteration
+*  -w /--waiter is :    refresh time laps
+*  -c/--cells is :      the number or positions of initial living cells
 
 
 
@@ -83,9 +80,9 @@ for more exemples please see exemples/
 
 ## Folder  
 -------------------------------------------------------
-* exemples/     various scripts about use cases 
-* main.py       main scrpit 
-* README.md     readme
-* src/	        sources files, functions class etc etc
-* tests/        test scripts 
+* exemples/      : various scripts about use cases 
+* main.py        : main scrpit 
+* README.md      : readme
+* src/	         : sources files, functions class etc etc
+* tests/         : test scripts 
 
