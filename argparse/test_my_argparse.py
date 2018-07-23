@@ -7,21 +7,21 @@ tests
 """
 
 
+"""
+test collection for my_parser
+please use "pytest -v" rather than unittest
+"""
+
 # import
 
 import pytest, unittest, os
 from my_argparse import my_parser
 
 
-"""
-please use "pytest -v" rather than unittest
-"""
-
-
 # functions
 
 def test_do_not_raise_error() :
-	"""test program don not fail in normal conditions"""
+	"""test program do not fail in normal conditions"""
 
 	os.system("python3 my_argparse.py")
 	os.system("python3 my_argparse.py -l ")
