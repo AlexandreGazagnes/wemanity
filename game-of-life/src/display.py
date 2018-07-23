@@ -27,178 +27,178 @@ import os, logging
 
 
 def intro() : 
-	"""basic welcome screen with print of instructions to stdout
+    """basic welcome screen with print of instructions to stdout
 
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out welcome message 	
-	return 				: -
-	raise				: - 
-	"""
+    positional args     : - 
+    optional args       : -
+    do                  : print out welcome message     
+    return              : -
+    raise               : - 
+    """
 
-	os.system("clear")
+    os.system("clear")
 
-	welcome()
-	print("\n\n")
+    welcome()
+    print("\n\n")
 
-	msg="The game is a zero-player game, meaning that its evolution is determined\n"+\
-		"by its initial state, requiring no further input. One interacts with\n"+\
-		"the Game of Life by creating an initial configuration and observing how it\n"+\
-		"evolves, or, for advanced players, by creating patterns with particular\n"+\
-		"properties.\n"
+    msg="The game is a zero-player game, meaning that its evolution is determined\n"+\
+        "by its initial state, requiring no further input. One interacts with\n"+\
+        "the Game of Life by creating an initial configuration and observing how it\n"+\
+        "evolves, or, for advanced players, by creating patterns with particular\n"+\
+        "properties.\n"
 
-	print(msg)
+    print(msg)
 
-	input("press <Enter> to continue...\n")	
+    input("press <Enter> to continue...\n") 
 
 
 def close() : 
-	"""basic bye screen with print of an ending message to stdout
+    """basic bye screen with print of an ending message to stdout
 
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out ending message 	
-	return 				: -
-	raise				: - 
-	"""
+    positional args     : - 
+    optional args       : -
+    do                  : print out ending message  
+    return              : -
+    raise               : - 
+    """
 
-	input("\n\npress <Enter> to end the program...\n\n")
+    input("\n\npress <Enter> to end the program...\n\n")
 
-	os.system("clear")
+    os.system("clear")
 
-	end()
+    end()
 
-	msg = str(	"\n\n"
-				"#########################################\n"
-				"\n"
-				"              bye bye bye !!!             \n"
-				"\n"
-				"#########################################\n"
-				"\n")
+    msg = str(  "\n\n"
+                "#########################################\n"
+                "\n"
+                "              bye bye bye !!!             \n"
+                "\n"
+                "#########################################\n"
+                "\n")
 
-	print(msg)
+    print(msg)
 
 
 def header() : 
-	"""basic header title called by every display's print function
+    """basic header title called by every display's print function
 
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out an 'header' to have a fancy UI
-	return 				: -
-	raise				: - 
-	"""
+    positional args     : - 
+    optional args       : -
+    do                  : print out an 'header' to have a fancy UI
+    return              : -
+    raise               : - 
+    """
 
-	msg = str(	"#########################################\n"
-				"\n"
-				"              GAME OF LIFE               \n"
-				"\n"
-				"#########################################\n"
-				"\n\n")
+    msg = str(  "#########################################\n"
+                "\n"
+                "              GAME OF LIFE               \n"
+                "\n"
+                "#########################################\n"
+                "\n\n")
 
-	print(msg)
+    print(msg)
 
 
 def options() : 
-	"""basic subtitle called by every arg_manager UI
+    """basic subtitle called by every arg_manager UI
 
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out an subtitle and header to have a fancy UI
-	return 				: -
-	raise				: - 
-	"""
+    positional args     : - 
+    optional args       : -
+    do                  : print out an subtitle and header to have a fancy UI
+    return              : -
+    raise               : - 
+    """
 
-	header()
+    header()
 
-	msg = 	"              OPTIONS\n"+\
-			"_________________________________________\n"
+    msg =   "              OPTIONS\n"+\
+            "_________________________________________\n"
 
-	print(msg)
+    print(msg)
 
 
 def game() : 
-	"""basic subtitle called by every GameOfLife._start or GameOfLife._next UI
+    """basic subtitle called by every GameOfLife._start or GameOfLife._next UI
 
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out an subtitle and header to have a fancy UI
-	return 				: -
-	raise				: - 
-	"""
+    positional args     : - 
+    optional args       : -
+    do                  : print out an subtitle and header to have a fancy UI
+    return              : -
+    raise               : - 
+    """
 
-	header()
+    header()
 
-	msg = 	"                GAME\n"+\
-			"_________________________________________\n"
+    msg =   "                GAME\n"+\
+            "_________________________________________\n"
 
-	print(msg)
+    print(msg)
 
 
 def welcome() : 
-	"""basic subtitle called by intro in the GameOfLife.__init__ UI
+    """basic subtitle called by intro in the GameOfLife.__init__ UI
 
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out an subtitle and header to have a fancy UI
-	return 				: -
-	raise				: - 
-	"""
+    positional args     : - 
+    optional args       : -
+    do                  : print out an subtitle and header to have a fancy UI
+    return              : -
+    raise               : - 
+    """
 
-	header()
+    header()
 
-	msg = 	"              WELCOME\n"+\
-			"_________________________________________\n"
+    msg =   "              WELCOME\n"+\
+            "_________________________________________\n"
 
-	print(msg)
+    print(msg)
 
 
 def end() : 
-	"""basic subtitle called by close for the last screen of game's UI
+    """basic subtitle called by close for the last screen of game's UI
 
-	positional args  	: - 
-	optional args 		: -
-	do 					: print out an subtitle and header to have a fancy UI
-	return 				: -
-	raise				: - 
-	"""
+    positional args     : - 
+    optional args       : -
+    do                  : print out an subtitle and header to have a fancy UI
+    return              : -
+    raise               : - 
+    """
 
-	header()
+    header()
 
-	msg = 	"              END\n"+\
-			"_________________________________________\n"
+    msg =   "              END\n"+\
+            "_________________________________________\n"
 
-	print(msg)
+    print(msg)
 
 
 def end_no_lives() : 
 
-	msg = 	"--------------------------------------------\n"	+\
-			"         END --> no more cells living\n"  			+\
-			"--------------------------------------------\n"	+\
-			"\n" * 2
+    msg =   "--------------------------------------------\n"    +\
+            "         END --> no more cells living\n"           +\
+            "--------------------------------------------\n"    +\
+            "\n" * 2
 
-	print(msg)
-	close()
+    print(msg)
+    close()
 
 
 def end_last_round() : 
 
-	msg = 	"--------------------------------------------\n"	+\
-			"        END --> maximum round reached\n"			+\
-			"--------------------------------------------\n"	+\
-			"\n" * 2
+    msg =   "--------------------------------------------\n"    +\
+            "        END --> maximum round reached\n"           +\
+            "--------------------------------------------\n"    +\
+            "\n" * 2
 
-	print(msg)
-	close()
+    print(msg)
+    close()
 
 
 def end_game_fixed() : 
 
-	msg = 	"--------------------------------------------\n"	+\
-			"END --> gamed fixed no more evol can happend\n"	+\
-			"--------------------------------------------\n"	+\
-			"\n" * 2
+    msg =   "--------------------------------------------\n"    +\
+            "END --> gamed fixed no more evol can happend\n"    +\
+            "--------------------------------------------\n"    +\
+            "\n" * 2
 
-	print(msg)
-	close()
+    print(msg)
+    close()
