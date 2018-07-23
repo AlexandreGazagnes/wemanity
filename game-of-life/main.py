@@ -26,7 +26,6 @@ logging.basicConfig(level=l, format='%(levelname)s : %(message)s')
 
 # main
 
-
 def main() : 
 
 	game = GameOfLife()
